@@ -122,4 +122,17 @@ public class FilmeController {
 
         return modelAndView;
     }
+
+    @PostMapping("/pesquisarfilme/diretor")
+    public ModelAndView pesquisarFilmeDiretor(@RequestParam("diretorpesquisa") String diretor) {
+        ModelAndView modelAndView = new ModelAndView("cadastro/cadastrofilme");
+
+        modelAndView.addObject("filmes", filmeRepository.findFilmeByDiretor(diretor));
+
+        modelAndView.addObject("filmeobj", new Filme());
+        modelAndView.addObject("diretorobj", new Diretor());
+        modelAndView.addObject("diretores", diretorRepository.findAll());
+
+        return modelAndView;
+    }
 }

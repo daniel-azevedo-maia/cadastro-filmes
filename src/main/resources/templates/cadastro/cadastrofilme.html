@@ -160,18 +160,26 @@
         </div>
 
         <div class="row">
-            <form action="/filmes/pesquisarfilme/nome" method="POST" class="col s12 m6">
-                <div class="input-field col s12">
+            <form action="/filmes/pesquisarfilme/nome" method="POST" class="col s12 m4">
+                <div class="input-field col s12 center-align">
                     <input id="nomepesquisa" name="nomepesquisa" class="validate">
                     <label class="active" for="nomepesquisa">Pesquisa por nome:</label>
                     <button class="btn waves-effect waves-light" type="submit" name="action">Buscar</button>
                 </div>
             </form>
 
-            <form action="/filmes/pesquisarfilme/ano" method="POST" class="col s12 m6">
-                <div class="input-field col s12">
+            <form action="/filmes/pesquisarfilme/ano" method="POST" class="col s12 m4">
+                <div class="input-field col s12 center-align">
                     <input id="anopesquisa" name="anopesquisa" class="validate">
                     <label class="active" for="anopesquisa">Pesquisa por ano:</label>
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Buscar</button>
+                </div>
+            </form>
+
+            <form action="/filmes/pesquisarfilme/diretor" method="POST" class="col s12 m4">
+                <div class="input-field col s12 center-align">
+                    <input id="diretorpesquisa" name="diretorpesquisa" class="validate">
+                    <label class="active" for="diretorpesquisa">Pesquisa por ano:</label>
                     <button class="btn waves-effect waves-light" type="submit" name="action">Buscar</button>
                 </div>
             </form>

@@ -19,4 +19,7 @@ public interface FilmeRepository extends JpaRepository<Filme, Long> {
     @Query("SELECT f FROM Filme f WHERE f.anoLancamento = :ano")
     List<Filme> findFilmeByAno(int ano);
 
+    @Query("SELECT f FROM Filme f WHERE f.diretor.nome LIKE %:diretor%")
+    List<Filme> findFilmeByDiretor(String diretor);
+
 }
