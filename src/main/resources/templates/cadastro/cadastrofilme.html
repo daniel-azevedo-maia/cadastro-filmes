@@ -10,83 +10,109 @@
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700|Montserrat:300,400,700&display=swap" rel="stylesheet">
     <style type="text/css">
-    body {
-        display: flex;
-        min-height: 100vh;
-        flex-direction: column;
-        background: linear-gradient(to right, #2c2f33, #242526);
-        color: #f5f5f5;
-        font-family: 'Roboto', Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-    }
-    h3 {
-        font-weight: 300;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        font-family: 'Montserrat', sans-serif;
-    }
-    main {
-        flex: 1 0 auto;
-        margin: 1em;
-    }
-    .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+    /* CSS Style */
+
+/* Global */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', Arial, sans-serif;
+    color: #f5f5f5;
+    background: linear-gradient(to right, #2c2f33, #242526);
+}
+
+/* Titles */
+h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.btn {
+    color: #ffffff !important;
+}
+
+/* Main Content */
+main {
+    flex: 1 0 auto;
+    margin: 1em;
+}
+
+/* Container */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Rows */
+.row {
+    width: 100%;
+    margin-bottom: 1.5em;
+}
+
+/* Striped Table */
+table.striped > tbody > tr:nth-child(odd) {
+    background-color: rgba(233, 30, 99, 0.5);
+}
+
+/* Input Fields and Labels */
+.input-field label,
+.input-field input {
+    color: #f5f5f5 !important;
+}
+
+.input-field label {
+    transform: translateY(-140%);
+}
+
+.input-field input[type=search]:focus,
+.input-field input:focus {
+    border-bottom: 1px solid #e91e63 !important;
+    box-shadow: 0 1px 0 0 #e91e63 !important;
+}
+
+/* Buttons */
+.btn {
+    background-color: #e91e63 !important;
+    transition: transform 0.3s ease-in-out;
+}
+
+.btn:active {
+    transform: scale(0.9);
+}
+
+/* Links */
+a,
+.input-field input:focus + label {
+    color: #e91e63 !important;
+}
+
+/* Table */
+table {
+    width: 100%;
+    table-layout: auto;
+}
+
+/* Media Queries */
+@media (max-width: 600px) {
+    .container,
     .row {
-        width: 100%;
-        margin-bottom: 1.5em;
+        flex-direction: column;
     }
-    table.striped>tbody>tr:nth-child(odd) {
-        background-color: rgba(233, 30, 99, 0.5);
-    }
-    .input-field label {
-        color: #f5f5f5 !important;
-        transform: translateY(-140%);
-    }
-    .input-field input {
-        color: #f5f5f5 !important;
-    }
-    .input-field input[type=search]:focus {
-        border-bottom: 1px solid #e91e63 !important;
-        box-shadow: 0 1px 0 0 #e91e63 !important;
-    }
-    .btn {
-        background-color: #e91e63 !important;
-        transition: transform 0.3s ease-in-out;
-    }
-    .btn:active {
-        transform: scale(0.9);
-    }
-    a {
-        color: #e91e63;
-    }
-    .input-field input:focus + label {
-        color: #e91e63 !important;
-    }
-    .input-field input:focus {
-        border-bottom: 1px solid #e91e63 !important;
-        box-shadow: 0 1px 0 0 #e91e63 !important;
-    }
-    table {
-        width: 100%;
-        table-layout: auto;
-    }
-    @media (max-width: 600px) {
-        .container, .row {
-            flex-direction: column;
-        }
-    }
-    footer {
-        text-align: center;
-        margin-top: 2em;
-        font-size: 0.9em;
-    }
+}
 
-
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 2em;
+    font-size: 0.9em;
+}
 </style>
 
 </head>
@@ -132,22 +158,22 @@
         </div>
 
         <div class="row">
-            <div class="col s12">
+            <div class="col s12 m6">
                 <a class="waves-effect waves-light btn" href="/filmes/listarfilmes">Lista de filmes</a>
             </div>
         </div>
 
         <div class="row">
-            <form action="/filmes/pesquisarfilme/nome" method="POST" class="col s12">
-                <div class="input-field col s6">
+            <form action="/filmes/pesquisarfilme/nome" method="POST" class="col s12 m6">
+                <div class="input-field col s12">
                     <input id="nomepesquisa" name="nomepesquisa" class="validate">
                     <label for="nomepesquisa">Pesquisa por nome:</label>
                     <button class="btn waves-effect waves-light" type="submit" name="action">Buscar</button>
                 </div>
             </form>
 
-            <form action="/filmes/pesquisarfilme/ano" method="POST" class="col s12">
-                <div class="input-field col s6">
+            <form action="/filmes/pesquisarfilme/ano" method="POST" class="col s12 m6">
+                <div class="input-field col s12">
                     <input id="anopesquisa" name="anopesquisa" class="validate">
                     <label for="anopesquisa">Pesquisa por ano:</label>
                     <button class="btn waves-effect waves-light" type="submit" name="action">Buscar</button>
