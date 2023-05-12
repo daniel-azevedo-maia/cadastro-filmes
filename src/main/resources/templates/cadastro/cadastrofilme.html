@@ -85,6 +85,8 @@
         margin-top: 2em;
         font-size: 0.9em;
     }
+
+
 </style>
 
 </head>
@@ -136,10 +138,18 @@
         </div>
 
         <div class="row">
-            <form action="/filmes/pesquisarfilme" method="POST" class="col s12">
-                <div class="input-field col s12">
+            <form action="/filmes/pesquisarfilme/nome" method="POST" class="col s12">
+                <div class="input-field col s6">
                     <input id="nomepesquisa" name="nomepesquisa" class="validate">
                     <label for="nomepesquisa">Pesquisa por nome:</label>
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Buscar</button>
+                </div>
+            </form>
+
+            <form action="/filmes/pesquisarfilme/ano" method="POST" class="col s12">
+                <div class="input-field col s6">
+                    <input id="anopesquisa" name="anopesquisa" class="validate">
+                    <label for="anopesquisa">Pesquisa por ano:</label>
                     <button class="btn waves-effect waves-light" type="submit" name="action">Buscar</button>
                 </div>
             </form>
@@ -161,8 +171,8 @@
                     <td th:text="${filme.titulo}"></td>
                     <td th:text="${filme.genero}"></td>
                     <td th:text="${filme.anoLancamento}"></td>
-                    <td><a th:href="@{/filmes/editarfilme/{idfilme}(idfilme=${filme.id})}">Editar</a></td>
-                    <td><a th:href="@{/filmes/excluirfilme/{idfilme}(idfilme=${filme.id})}">Excluir</a></td>
+                    <td><a class="btn waves-effect waves-light" th:href="@{/filmes/editarfilme/{idfilme}(idfilme=${filme.id})}">Editar</a></td>
+                    <td><a class="btn waves-effect waves-light" th:href="@{/filmes/excluirfilme/{idfilme}(idfilme=${filme.id})}">Excluir</a></td>
                 </tr>
                 </tbody>
             </table>

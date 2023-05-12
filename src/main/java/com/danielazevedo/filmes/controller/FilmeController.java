@@ -42,6 +42,7 @@ public class FilmeController {
 
     @GetMapping("/editarfilme/{idfilme}")
     public ModelAndView editarFilme(@PathVariable("idfilme") Long idfilme) {
+
         Optional<Filme> filme = filmeRepository.findById(idfilme);
 
         ModelAndView modelAndView = new ModelAndView("cadastro/cadastrofilme");
@@ -73,10 +74,19 @@ public class FilmeController {
         de caminho que pode ser acessada com @PathVariable.
     */
 
-    @PostMapping("/pesquisarfilme")
-    public ModelAndView pesquisarFilme(@RequestParam("nomepesquisa") String nomepesquisa) {
+    @PostMapping("/pesquisarfilme/nome")
+    public ModelAndView pesquisarFilmeNome(@RequestParam("nomepesquisa") String nomepesquisa) {
         ModelAndView modelAndView = new ModelAndView("cadastro/cadastrofilme");
         modelAndView.addObject("filmes", filmeRepository.findFilmeByTitulo(nomepesquisa));
+        modelAndView.addObject("filmeobj", new Filme());
+        return modelAndView;
+    }
+
+    @PostMapping("/pesquisarfilme/ano")
+    public ModelAndView pesquisarFilmeAno(@RequestParam("anopesquisa") String anopesquisa) {
+        ModelAndView modelAndView = new ModelAndView("cadastro/cadastrofilme");
+        int ano = Integer.parseInt(anopesquisa);
+        modelAndView.addObject("filmes", filmeRepository.findFilmeByAno(ano));
         modelAndView.addObject("filmeobj", new Filme());
         return modelAndView;
     }
