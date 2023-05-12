@@ -21,7 +21,7 @@
         padding: 0;
         font-family: 'Roboto', Arial, sans-serif;
         color: #f5f5f5;
-        background: #000; /* Changed to plain black */
+        background: linear-gradient(to right, #2c2f33, #242526);
     }
 
     /* Titles */
@@ -31,13 +31,13 @@
         text-transform: uppercase;
         letter-spacing: 2px;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        margin: 0.3em 0; /* Reduced margin */
+        margin: 0.5em 0; /* added margin */
     }
 
     /* Main Content */
     main {
         flex: 1 0 auto;
-        margin: 0.3em; /* Reduced margin */
+        margin: 0.5em; /* reduced margin */
     }
 
     /* Container */
@@ -45,34 +45,34 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 0.3em; /* Reduced padding */
+        padding: 0.5em; /* added padding */
     }
 
     /* Rows */
     .row {
         width: 100%;
-        margin: 0.3em 0; /* Reduced margin */
+        margin: 0.5em 0; /* reduced margin-bottom and added margin-top */
     }
 
     /* Input Fields and Labels */
     .input-field label,
     .input-field input {
         color: #f5f5f5 !important;
-        margin: 0.1em 0; /* Reduced margin */
+        margin: 0.2em 0; /* added margin */
     }
 
     /* Buttons */
     .btn {
         background-color: #e91e63 !important;
         transition: transform 0.3s ease-in-out;
-        margin: 0.3em 0; /* Reduced margin */
+        margin: 0.5em 0; /* added margin */
     }
 
     /* Table */
     table {
         width: 100%;
         table-layout: auto;
-        margin: 0.3em 0; /* Reduced margin */
+        margin: 0.5em 0; /* added margin */
     }
 
     /* Media Queries */
@@ -80,14 +80,14 @@
         .container,
         .row {
             flex-direction: column;
-            margin: 0.3em 0; /* Reduced margin */
+            margin: 0.5em 0; /* reduced margin-bottom and added margin-top */
         }
     }
 
     /* Footer */
     footer {
         text-align: center;
-        margin-top: 0.5em; /* Reduced margin */
+        margin-top: 1em; /* reduced margin */
         font-size: 0.9em;
     }
 </style>
