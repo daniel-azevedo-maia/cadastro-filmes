@@ -1,9 +1,6 @@
 package com.danielazevedo.filmes.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -22,10 +19,15 @@ public class Filme implements Serializable {
     private String genero;
 
     private int anoLancamento;
+
+    @ManyToOne
+    @JoinColumn(name = "diretor_id")
+    private Diretor diretor;
+
     /*
 
-    private String sinopse; // Breve descrição ou sinopse do filme
-    private double avaliacao; // Avaliação do filme
+        private String sinopse; // Breve descrição ou sinopse do filme
+        private double avaliacao; // Avaliação do filme
 
     */
 }

@@ -8,14 +8,114 @@
     <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.css"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css"  media="screen,projection"/>
 
+    <!-- Import Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700|Montserrat:300,400,700&display=swap" rel="stylesheet">
+
+    <!-- Import Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <style type="text/css">
+    /* CSS Style */
+
+    /* Global */
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        font-family: 'Roboto', Arial, sans-serif;
+        color: #f5f5f5;
+        background-color: black;
+    }
+
+    /* Titles */
+    h3 {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 300;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        text-align: center;
+        padding-top: 15%;
+    }
+
+    /* Main Content */
+    main {
+        flex: 1 0 auto;
+        margin: 1em;
+    }
+
+    /* Container */
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        text-align: center;
+    }
+
+    /* Buttons */
+    .btn {
+        background-color: #e91e63 !important;
+        transition: transform 0.3s ease-in-out;
+        margin: 1em;
+    }
+
+    .btn:active {
+        transform: scale(0.9);
+    }
+
+    /* Footer */
+    footer {
+        text-align: center;
+        margin-top: 2em;
+        font-size: 0.9em;
+    }
+
+    /* Social Media Icons */
+    .fab {
+        padding: 20px;
+        font-size: 30px;
+        width: 50px;
+        text-align: center;
+        text-decoration: none;
+        margin: 5px 2px;
+    }
+
+    .fab:hover {
+        opacity: 0.7;
+    }
+
+    .fab-linkedin {
+        color: #007bb5;
+    }
+
+    .fab-github {
+        color: #ffffff;
+    }
+    </style>
+
 </head>
 <body>
+<main>
+    <div class="container">
+        <h3>Filmes</h3>
+        <a class="waves-effect waves-light btn" href="/filmes/cadastrofilme">
+            Cadastrar um novo filme</a>
+        <a class="waves-effect waves-light btn" href="/diretores/cadastrodiretor">Cadastrar um novo diretor</a>
+        <div class="social-links">
+            <a href="https://github.com/daniel-azevedo-maia" class="fab fa-github"></a>
+            <a href="https://www.linkedin.com/in/daniel-azevedo-0a9952221/" class="fab fa-linkedin"></a>
+        </div>
+    </div>
+</main>
 
-    <a href="/filmes/cadastrofilme">Cadastro de Filme</a>
-
-
-    <!--JavaScript at end of body for optimized loading-->
-    <script type="text/javascript" src="/materialize/js/materialize.js"></script>
-    <script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
+<!--JavaScript at end of body for optimized loading-->
+<script type="text/javascript" src="/materialize/js/materialize.js"></script>
+<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
 </body>
 </html>
+

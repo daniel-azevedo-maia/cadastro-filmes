@@ -2,13 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Cadastro de Filmes</title>
+    <title>Cadastro de Diretores</title>
 
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.css"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css"  media="screen,projection"/>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700|Montserrat:300,400,700&display=swap" rel="stylesheet">
+
     <style type="text/css">
     /* CSS Style */
 
@@ -21,7 +22,7 @@
         padding: 0;
         font-family: 'Roboto', Arial, sans-serif;
         color: #f5f5f5;
-        background: #000; /* Changed to plain black */
+        background: linear-gradient(to right, #2c2f33, #242526);
     }
 
     /* Titles */
@@ -31,13 +32,13 @@
         text-transform: uppercase;
         letter-spacing: 2px;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        margin: 0.3em 0; /* Reduced margin */
+        margin: 0.5em 0; /* added margin */
     }
 
     /* Main Content */
     main {
         flex: 1 0 auto;
-        margin: 0.3em; /* Reduced margin */
+        margin: 0.5em; /* reduced margin */
     }
 
     /* Container */
@@ -45,34 +46,34 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 0.3em; /* Reduced padding */
+        padding: 0.5em; /* added padding */
     }
 
     /* Rows */
     .row {
         width: 100%;
-        margin: 0.3em 0; /* Reduced margin */
+        margin: 0.5em 0; /* reduced margin-bottom and added margin-top */
     }
 
     /* Input Fields and Labels */
     .input-field label,
     .input-field input {
         color: #f5f5f5 !important;
-        margin: 0.1em 0; /* Reduced margin */
+        margin: 0.2em 0; /* added margin */
     }
 
     /* Buttons */
     .btn {
         background-color: #e91e63 !important;
         transition: transform 0.3s ease-in-out;
-        margin: 0.3em 0; /* Reduced margin */
+        margin: 0.5em 0; /* added margin */
     }
 
     /* Table */
     table {
         width: 100%;
         table-layout: auto;
-        margin: 0.3em 0; /* Reduced margin */
+        margin: 0.5em 0; /* added margin */
     }
 
     /* Media Queries */
@@ -80,14 +81,14 @@
         .container,
         .row {
             flex-direction: column;
-            margin: 0.3em 0; /* Reduced margin */
+            margin: 0.5em 0; /* reduced margin-bottom and added margin-top */
         }
     }
 
     /* Footer */
     footer {
         text-align: center;
-        margin-top: 0.5em; /* Reduced margin */
+        margin-top: 1em; /* reduced margin */
         font-size: 0.9em;
     }
 </style>
@@ -99,68 +100,46 @@
 
         <a class="btn waves-effect waves-light" href="/">Voltar</a>
 
-        <h3 class="center-align">Cadastro de Filmes</h3>
+        <h3 class="center-align">Cadastro de Diretores</h3>
+
         <div class="row">
-            <form th:object="${filmeobj}" action="/filmes/cadastrarfilme" method="POST" class="col s12">
+            <form th:object="${diretorobj}" action="/diretores/cadastrardiretor" method="POST" class="col s12">
 
                 <div class="row">
                     <div class="input-field col s6">
                         <input id="id" name="id" th:field="*{id}" readonly>
                         <label class="active" for="id">Id:</label>
                     </div>
-                </div>
-
-                <div class="row">
                     <div class="input-field col s6">
-                        <input id="titulo" name="titulo" th:field="*{titulo}" class="validate">
-                        <label class="active" for="titulo">Título:</label>
+                        <input id="nome" name="nome" th:field="*{nome}" class="validate">
+                        <label class="active" for="nome">Nome:</label>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="input-field col s6">
-                        <input id="genero" name="genero" th:field="*{genero}" class="validate">
-                        <label class="active" for="genero">Gênero:</label>
+                    <div class="input-field col s12">
+                        <input id="nacionalidade" name="nacionalidade" th:field="*{nacionalidade}" class="validate">
+                        <label class="active" for="nacionalidade">Nacionalidade:</label>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="input-field col s6">
-                        <input id="anoLancamento" name="anoLancamento" th:field="*{anoLancamento}" class="validate">
-                        <label class="active" for="anoLancamento">Ano de lançamento:</label>
-                    </div>
-                </div>
-
-
-                <div class="row">
-                    <div class="input-field col s6">
-                        <select id="diretorid" name="diretorid" required>
-                            <option value="" disabled selected>Selecione o diretor</option>
-                            <option th:each="diretor : ${diretores}" th:value="${diretor.id}" th:text="${diretor.nome}"></option>
-                        </select>
-                        <label for="diretorid">Diretor:</label>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="input-field col s6">
-                        <button class="btn waves-effect waves-light" type="submit" name="action">Cadastrar filme</button>
-                    </div>
-                    <div class="input-field col s6">
-                        <a class="btn waves-effect waves-light" href="/diretores/cadastrodiretor">Cadastrar diretor</a>
+                    <div class="input-field col s12">
+                        <button class="btn waves-effect waves-light" type="submit" name="action">Cadastrar</button>
                     </div>
                 </div>
             </form>
         </div>
 
+
         <div class="row">
             <div class="col s12 m6">
-                <a class="waves-effect waves-light btn" href="/filmes/listarfilmes">Lista de filmes</a>
+                <a class="waves-effect waves-light btn" href="/diretores/listardiretores">Lista de diretores</a>
             </div>
         </div>
 
         <div class="row">
-            <form action="/filmes/pesquisarfilme/nome" method="POST" class="col s12 m6">
+            <form action="/diretores/pesquisardiretor/nome" method="POST" class="col s12 m6">
                 <div class="input-field col s12">
                     <input id="nomepesquisa" name="nomepesquisa" class="validate">
                     <label class="active" for="nomepesquisa">Pesquisa por nome:</label>
@@ -168,10 +147,10 @@
                 </div>
             </form>
 
-            <form action="/filmes/pesquisarfilme/ano" method="POST" class="col s12 m6">
+            <form action="/diretores/pesquisardiretor/nacionalidade" method="POST" class="col s12 m6">
                 <div class="input-field col s12">
-                    <input id="anopesquisa" name="anopesquisa" class="validate">
-                    <label class="active" for="anopesquisa">Pesquisa por ano:</label>
+                    <input id="nacionalidade" name="nacionalidade" class="validate">
+                    <label class="active" for="nacionalidade">Pesquisa por nacionalidade:</label>
                     <button class="btn waves-effect waves-light" type="submit" name="action">Buscar</button>
                 </div>
             </form>
@@ -181,23 +160,18 @@
             <table class="striped responsive-table">
                 <thead>
                 <tr>
-                    <th>Título</th>
-                    <th>Gênero</th>
-                    <th>Ano de Lançamento</th>
-                    <th>Direção</th>
+                    <th>Nome</th>
+                    <th>Nacionalidade</th>
                     <th>Editar</th>
                     <th>Excluir</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="filme : ${filmes}">
-                    <td th:text="${filme.titulo}"></td>
-                    <td th:text="${filme.genero}"></td>
-                    <td th:text="${filme.anoLancamento}"></td>
-                    <td th:text="${filme.diretor.nome}"></td>
-
-                    <td><a class="btn waves-effect waves-light" th:href="@{/filmes/editarfilme/{idfilme}(idfilme=${filme.id})}">Editar</a></td>
-                    <td><a class="btn waves-effect waves-light" th:href="@{/filmes/excluirfilme/{idfilme}(idfilme=${filme.id})}">Excluir</a></td>
+                <tr th:each="diretor : ${diretores}">
+                    <td th:text="${diretor.nome}"></td>
+                    <td th:text="${diretor.nacionalidade}"></td>
+                    <td><a class="btn waves-effect waves-light" th:href="@{/diretores/editardiretor/{iddiretor}(iddiretor=${diretor.id})}">Editar</a></td>
+                    <td><a class="btn waves-effect waves-light" th:href="@{/diretores/excluirdiretor/{iddiretor}(iddiretor=${diretor.id})}">Excluir</a></td>
                 </tr>
                 </tbody>
             </table>
@@ -210,12 +184,7 @@
         <p><a href="https://www.linkedin.com/in/daniel-azevedo-0a9952221/" target="_blank">Linkedin</a></p>
     </footer>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var elems = document.querySelectorAll('select');
-        var instances = M.FormSelect.init(elems);
-    });
-</script>
+
 <!--JavaScript at end of body for optimized loading-->
 <script type="text/javascript" src="/materialize/js/materialize.js"></script>
 <script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
