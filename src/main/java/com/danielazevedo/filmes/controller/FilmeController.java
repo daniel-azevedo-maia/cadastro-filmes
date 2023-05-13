@@ -41,6 +41,7 @@ public class FilmeController {
         return modelAndView;
     }
 
+
     @PostMapping("/cadastrarfilme")
     public ModelAndView cadastrarFilme(Filme filme, @RequestParam("diretorid") Long diretorid) {
 
@@ -48,7 +49,6 @@ public class FilmeController {
         diretor.get().getFilmesDirigidos().add(filme);
 
         filme.setDiretor(diretor.get());
-
 
         filmeRepository.save(filme);
 
@@ -77,6 +77,7 @@ public class FilmeController {
     @GetMapping("/excluirfilme/{idfilme}")
     public ModelAndView excluirFilme(@PathVariable("idfilme") Long idfilme) {
         filmeRepository.deleteById(idfilme);
+
 
         ModelAndView modelAndView = new ModelAndView("cadastro/cadastrofilme");
         modelAndView.addObject("filmes",filmeRepository.findAll());

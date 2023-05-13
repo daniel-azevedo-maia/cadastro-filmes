@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -17,6 +18,9 @@ public class DiretorController {
 
     @Autowired
     private DiretorRepository diretorRepository;
+
+    @Autowired
+    private FilmeRepository filmeRepository;
 
     @GetMapping("/cadastrodiretor")
     public ModelAndView inicio() {
@@ -53,18 +57,29 @@ public class DiretorController {
         return modelAndView;
     }
 
+
     @GetMapping("/excluirdiretor/{iddiretor}")
     public ModelAndView excluirDiretor(@PathVariable("iddiretor") Long iddiretor) {
+        Optional<Diretor> diretor = diretorRepository.findById(iddiretor);
+
+        List<Filme> filmes = filmeRepository.findAll();
+
+        for(Filme filme : filmes) {
+            if(filme.getDiretor().getId() == iddiretor) {
+                filmeRepository.deleteById(filme.getId());
+            }
+        }
+
         diretorRepository.deleteById(iddiretor);
 
         ModelAndView modelAndView = new ModelAndView("cadastro/cadastrodiretor");
-        modelAndView.addObject("ditetores",diretorRepository.findAll());
+        modelAndView.addObject("diretores",diretorRepository.findAll());
         modelAndView.addObject("diretorobj", new Diretor());
         return modelAndView;
 
     }
 
-    @PostMapping("/pesquisardiretor/diretor")
+    @PostMapping("/pesquisardiretor/nome")
     public ModelAndView pesquisarDiretorNome(@RequestParam("nomepesquisa") String nomepesquisa) {
         ModelAndView modelAndView = new ModelAndView("cadastro/cadastrodiretor");
         modelAndView.addObject("diretores", diretorRepository.findDiretorByNome(nomepesquisa));
