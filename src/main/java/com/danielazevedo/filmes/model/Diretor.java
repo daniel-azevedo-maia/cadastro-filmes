@@ -21,8 +21,7 @@ public class Diretor implements Serializable {
     @Column(nullable = false)
     private String nacionalidade;
 
-    @OneToMany(mappedBy = "diretor")
-    @Column(nullable = false)
+    @OneToMany(mappedBy = "diretor", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Filme> filmesDirigidos;
 
 
