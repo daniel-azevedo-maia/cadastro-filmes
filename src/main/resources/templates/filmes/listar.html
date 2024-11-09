@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Filmes</title>
+    <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.min.css" />
+</head>
+<body>
+<div class="container">
+    <h3>Filmes Registrados</h3>
+    <a class="btn waves-effect waves-light" href="/filmes/cadastrofilme">Novo Filme</a>
+    <table class="striped">
+        <thead>
+        <tr>
+            <th>Título</th>
+            <th>Gênero</th>
+            <th>Ano</th>
+            <th>Editar</th>
+            <th>Excluir</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="filme : ${filmes}">
+            <td th:text="${filme.titulo}"></td>
+            <td th:text="${filme.genero}"></td>
+            <td th:text="${filme.anoLancamento}"></td>
+            <td><a class="btn" th:href="@{/filmes/editar/{id}(id=${filme.id})}">Editar</a></td>
+            <td><a class="btn red" th:href="@{/filmes/excluir/{id}(id=${filme.id})}">Excluir</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <a class="btn waves-effect waves-light" href="/">Voltar</a>
+</div>
+<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
+</body>
+</html>
