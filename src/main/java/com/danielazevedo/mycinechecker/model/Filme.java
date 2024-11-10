@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Getter
 @Setter
 @Entity
@@ -16,14 +18,12 @@ public class Filme {
     @Column(nullable = false)
     private String titulo;
 
-    private String genero;
+    @Column(nullable = false)
+    private LocalDate dataAssistido;
 
     @Column(nullable = false)
-    private int anoLancamento;
+    private String opiniao;
 
-    @Column
-    private String comentario;
-
-    @Column
-    private String posterUrl;
+    @Column(nullable = false)
+    private Integer estrelas;
 }

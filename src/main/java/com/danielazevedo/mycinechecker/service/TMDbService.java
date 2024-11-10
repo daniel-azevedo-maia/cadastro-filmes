@@ -9,19 +9,19 @@ import java.util.Map;
 @Service
 public class TMDbService {
 
-    @Value("${tmdb.api.key}")
-    private String apiKey;
-
-    @Value("${tmdb.api.url}")
-    private String baseUrl;
-
-    @Value("${tmdb.api.language}")
-    private String language;
-
     private final RestTemplate restTemplate;
+    private final String apiKey;
+    private final String baseUrl;
+    private final String language;
 
-    public TMDbService(RestTemplate restTemplate) {
+    public TMDbService(RestTemplate restTemplate,
+                       @Value("${tmdb.api.url}") String baseUrl,
+                       @Value("${tmdb.api.key}") String apiKey,
+                       @Value("${tmdb.api.language}") String language) {
         this.restTemplate = restTemplate;
+        this.baseUrl = baseUrl;
+        this.apiKey = apiKey;
+        this.language = language;
     }
 
     public Map<String, Object> buscarFilmesPopulares() {

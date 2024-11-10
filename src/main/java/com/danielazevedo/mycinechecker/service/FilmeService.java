@@ -1,7 +1,7 @@
 package com.danielazevedo.mycinechecker.service;
 
 import com.danielazevedo.mycinechecker.dto.FilmeDTO;
-
+import com.danielazevedo.mycinechecker.exception.FilmeNotFoundException;
 import com.danielazevedo.mycinechecker.model.Filme;
 import com.danielazevedo.mycinechecker.repository.FilmeRepository;
 import org.modelmapper.ModelMapper;
@@ -28,24 +28,20 @@ public class FilmeService {
 
     public FilmeDTO salvar(FilmeDTO filmeDTO) {
         Filme filme = modelMapper.map(filmeDTO, Filme.class);
-        filme = filmeRepository.save(filme);
-        return modelMapper.map(filme, FilmeDTO.class);
-    }
-
-    public List<FilmeDTO> buscarPorTitulo(String titulo) {
-        return filmeRepository.findByTituloContainingIgnoreCase(titulo).stream()
-                .map(filme -> modelMapper.map(filme, FilmeDTO.class))
-                .collect(Collectors.toList());
+        Filme savedFilme = filmeRepository.save(filme);
+        return modelMapper.map(savedFilme, FilmeDTO.class);
     }
 
     public FilmeDTO buscarPorId(Long id) {
-        return modelMapper.map(filmeRepository.findById(id).orElseThrow(() ->
-                new IllegalArgumentException("Filme não encontrado: " + id)), FilmeDTO.class);
+        Filme filme = filmeRepository.findById(id)
+                .orElseThrow(() -> new FilmeNotFoundException("Filme não encontrado com id " + id));
+        return modelMapper.map(filme, FilmeDTO.class);
     }
 
     public void excluirPorId(Long id) {
+        if (!filmeRepository.existsById(id)) {
+            throw new FilmeNotFoundException("Filme não encontrado para exclusão com id " + id);
+        }
         filmeRepository.deleteById(id);
     }
-
-
 }

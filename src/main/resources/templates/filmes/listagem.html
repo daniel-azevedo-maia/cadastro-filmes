@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filmes Assistidos</title>
+    <link rel="stylesheet" href="/css/listagem.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h1>Filmes Assistidos</h1>
+    <div id="mensagem-vazia" th:if="${filmes.empty}">
+        <p>Nenhum filme assistido registrado.</p>
+    </div>
+    <table class="filmes-table" id="filmes-table" th:if="${!filmes.empty}">
+        <thead>
+        <tr>
+            <th>Título</th>
+            <th>Data</th>
+            <th>Classificação</th>
+            <th>Ação</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Renderizar os filmes usando Thymeleaf -->
+        <tr th:each="filme : ${filmes}">
+            <td th:text="${filme.titulo}">Título do Filme</td>
+            <td th:text="${filme.dataAssistidoFormatada}">Data</td>
+            <td>
+                <!-- Exibir estrelas dinamicamente -->
+                <span th:each="i : ${#numbers.sequence(1, filme.estrelas)}">★</span>
+            </td>
+            <td>
+                <a th:href="@{/filmes/editarfilme/{id}(id=${filme.id})}" class="button editar">Editar</a>
+                <a th:href="@{/filmes/excluir/{id}(id=${filme.id})}" class="button excluir">Excluir</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Botão para voltar -->
+<a href="/" class="button voltar">Voltar à Página Principal</a>
+
+</body>
+</html>

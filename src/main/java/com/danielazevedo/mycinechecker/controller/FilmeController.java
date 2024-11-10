@@ -1,35 +1,59 @@
 package com.danielazevedo.mycinechecker.controller;
 
 import com.danielazevedo.mycinechecker.dto.FilmeDTO;
+import com.danielazevedo.mycinechecker.exception.FilmeNotFoundException;
 import com.danielazevedo.mycinechecker.service.FilmeService;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/filmes")
+@AllArgsConstructor
 public class FilmeController {
 
-    @Autowired
-    private FilmeService filmeService;
+    private final FilmeService filmeService;
 
     @GetMapping("/")
     public String listarFilmes(Model model) {
-        model.addAttribute("filmes", filmeService.listarTodos());
-        return "filmes/listar"; // Renderiza templates/filmes/listar.html
+        List<FilmeDTO> filmes = filmeService.listarTodos();
+        model.addAttribute("filmes", filmes);
+        return "filmes/listagem";
     }
 
     @GetMapping("/cadastrofilme")
     public String mostrarCadastroFilme(Model model) {
         model.addAttribute("filmeobj", new FilmeDTO());
-        return "cadastro/index"; // Renderiza templates/cadastro/index.html
+        return "filmes/registro";
     }
 
     @PostMapping("/cadastrarfilme")
-    public String cadastrarFilme(@ModelAttribute("filmeobj") FilmeDTO filmeDTO) {
+    public String cadastrarFilme(
+            @Valid @ModelAttribute("filmeobj") FilmeDTO filmeDTO,
+            BindingResult result,
+            Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("filmeobj", filmeDTO);
+            return "filmes/registro"; // Corrige os erros no mesmo formulário
+        }
+
         filmeService.salvar(filmeDTO);
-        return "redirect:/filmes/"; // Redireciona para a lista de filmes
+        return "redirect:/filmes/";
+    }
+
+    @GetMapping("/editarfilme/{id}")
+    public String editarFilme(@PathVariable("id") Long id, Model model) {
+        FilmeDTO filme = filmeService.buscarPorId(id);
+        if (filme == null) {
+            throw new FilmeNotFoundException("Filme não encontrado com o ID " + id);
+        }
+        model.addAttribute("filmeobj", filme);
+        return "filmes/registro";
     }
 
     @GetMapping("/excluir/{id}")

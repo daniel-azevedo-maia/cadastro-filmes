@@ -1,40 +1,39 @@
 package com.danielazevedo.mycinechecker.dto;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+@Getter
+@Setter
 public class FilmeDTO {
+
     private Long id;
+
+    @NotBlank(message = "Título é obrigatório")
     private String titulo;
-    private String genero;
-    private int anoLancamento;
 
-    public Long getId() {
-        return id;
+    @NotNull(message = "Data é obrigatória")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dataAssistido;
+
+    @NotBlank(message = "Opinião é obrigatória")
+    private String opiniao;
+
+    @NotNull(message = "Estrelas são obrigatórias")
+    @Min(1)
+    @Max(5)
+    private Integer estrelas;
+
+    public String getDataAssistidoFormatada() {
+        return dataAssistido != null ? dataAssistido.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) : "";
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getGenero() {
-        return genero;
-    }
-
-    public void setGenero(String genero) {
-        this.genero = genero;
-    }
-
-    public int getAnoLancamento() {
-        return anoLancamento;
-    }
-
-    public void setAnoLancamento(int anoLancamento) {
-        this.anoLancamento = anoLancamento;
-    }
 }

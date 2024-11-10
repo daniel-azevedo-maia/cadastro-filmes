@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Filme</title>
+    <link rel="stylesheet" href="/css/registro.css">
+</head>
+<body>
+<div class="container">
+    <h1 th:if="${filmeobj.id == null}">Adicionar Filme</h1>
+    <h1 th:if="${filmeobj.id != null}">Editar Filme</h1>
+
+    <form action="/filmes/cadastrarfilme" method="POST" class="form-container" th:object="${filmeobj}">
+        <label for="titulo">Título do Filme</label>
+        <input type="text" id="titulo" th:field="*{titulo}" required>
+        <p th:errors="*{titulo}"></p>
+
+        <label for="data">Data Assistida</label>
+        <input type="date" id="data" th:field="*{dataAssistido}" required>
+        <p th:errors="*{dataAssistido}"></p>
+
+        <label for="opiniao">Opinião</label>
+        <textarea id="opiniao" th:field="*{opiniao}" required></textarea>
+        <p th:errors="*{opiniao}"></p>
+
+        <label for="estrelas">Avaliação</label>
+        <select id="estrelas" th:field="*{estrelas}" required>
+            <option value="5">★★★★★ - 5 Estrelas</option>
+            <option value="4">★★★★☆ - 4 Estrelas</option>
+            <option value="3">★★★☆☆ - 3 Estrelas</option>
+            <option value="2">★★☆☆☆ - 2 Estrelas</option>
+            <option value="1">★☆☆☆☆ - 1 Estrela</option>
+        </select>
+        <p th:errors="*{estrelas}"></p>
+
+        <button type="submit">Salvar</button>
+    </form>
+
+</div>
+</body>
+</html>
