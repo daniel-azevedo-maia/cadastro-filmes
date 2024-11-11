@@ -14,7 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
-@RequestMapping("/api/v1/filmes") // Adicionando padrão de versão e endpoint base
+@RequestMapping("/api/v1/filmes")
 @AllArgsConstructor
 public class FilmeController {
 

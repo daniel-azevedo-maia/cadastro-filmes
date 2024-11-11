@@ -10,6 +10,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class FilmeDTO {
+
     private Long id;
     private String titulo;
 
@@ -21,5 +22,6 @@ public class FilmeDTO {
     private Integer estrelas;
 
     private String dataAssistidoFormatada;
+
 }
 
