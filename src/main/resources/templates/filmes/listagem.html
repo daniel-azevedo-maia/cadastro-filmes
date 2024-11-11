@@ -3,45 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filmes Assistidos</title>
-    <link rel="stylesheet" href="/css/listagem.css">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Meus Filmes</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<div class="container">
-    <h1>Filmes Assistidos</h1>
-    <div id="mensagem-vazia" th:if="${filmes.empty}">
-        <p>Nenhum filme assistido registrado.</p>
+<div class="container mt-5">
+    <h1 class="text-center">Meus Filmes Assistidos</h1>
+    <div id="mensagem-vazia" th:if="${filmes.empty}" class="alert alert-info mt-4 text-center">
+        Nenhum filme assistido foi registrado ainda.
     </div>
-    <table class="filmes-table" id="filmes-table" th:if="${!filmes.empty}">
-        <thead>
+    <table class="table table-striped mt-4" th:if="${!filmes.empty}">
+        <thead class="table-dark">
         <tr>
             <th>Título</th>
             <th>Data</th>
-            <th>Classificação</th>
-            <th>Ação</th>
+            <th>Avaliação</th>
+            <th>Ações</th>
         </tr>
         </thead>
         <tbody>
-        <!-- Renderizar os filmes usando Thymeleaf -->
         <tr th:each="filme : ${filmes}">
             <td th:text="${filme.titulo}">Título do Filme</td>
             <td th:text="${filme.dataAssistidoFormatada}">Data</td>
             <td>
-                <!-- Exibir estrelas dinamicamente -->
                 <span th:each="i : ${#numbers.sequence(1, filme.estrelas)}">★</span>
             </td>
             <td>
-                <a th:href="@{/filmes/editarfilme/{id}(id=${filme.id})}" class="button editar">Editar</a>
-                <a th:href="@{/filmes/excluir/{id}(id=${filme.id})}" class="button excluir">Excluir</a>
+                <button type="button" class="btn btn-warning btn-sm"
+                        data-bs-toggle="modal"
+                        data-bs-target="#editarModal"
+                        th:data-id="${filme.id}"
+                        th:data-titulo="${filme.titulo}"
+                        th:data-data-assistido="${filme.dataAssistidoFormatada}"
+                        th:data-opiniao="${filme.opiniao}"
+                        th:data-estrelas="${filme.estrelas}">
+                    Editar
+                </button>
+
+                <form th:action="@{/api/v1/filmes/{id}(id=${filme.id})}" method="POST" style="display:inline;">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                </form>
             </td>
         </tr>
         </tbody>
     </table>
+    <div class="text-center mt-4">
+        <a href="/" class="btn btn-secondary">Voltar à Página Principal</a>
+    </div>
 </div>
 
-<!-- Botão para voltar -->
-<a href="/" class="button voltar">Voltar à Página Principal</a>
+<!-- Modal para Edição -->
+<div class="modal fade" id="editarModal" tabindex="-1" aria-labelledby="editarModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editarModalLabel">Editar Filme</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editarForm" th:action="@{/api/v1/filmes/__id__}" method="POST">
+                    <!-- Campo oculto para o Spring reconhecer o método PUT -->
+                    <input type="hidden" name="_method" value="PUT">
+                    <input type="hidden" id="edit-id" name="id">
+                    <div class="mb-3">
+                        <label for="edit-titulo" class="form-label">Título do Filme</label>
+                        <input type="text" id="edit-titulo" name="titulo" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-dataAssistido" class="form-label">Data Assistida</label>
+                        <input type="date" id="edit-dataAssistido" name="dataAssistido" class="form-control" required
+                               oninput="validateYear(this)">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-opiniao" class="form-label">Opinião</label>
+                        <textarea id="edit-opiniao" name="opiniao" class="form-control" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-estrelas" class="form-label">Avaliação</label>
+                        <select id="edit-estrelas" name="estrelas" class="form-select" required>
+                            <option value="5">★★★★★ - 5 Estrelas</option>
+                            <option value="4">★★★★☆ - 4 Estrelas</option>
+                            <option value="3">★★★☆☆ - 3 Estrelas</option>
+                            <option value="2">★★☆☆☆ - 2 Estrelas</option>
+                            <option value="1">★☆☆☆☆ - 1 Estrela</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary" form="editarForm">Salvar Alterações</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/listagem.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

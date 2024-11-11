@@ -1,0 +1,14 @@
+TODO:
+
+- Estudar código, testar endpoints, etc.
+- Melhorar os endpoints da API (deixar api/v1/ etc, no padrão correto)
+- Anotações de @Transactional
+- Spring Security e JWT
+- Tratamento de exceções (melhorar o tratamento global de exceções);
+- Melhor organização dos pacotes (domain?)
+- Variáveis dinâmicas de ambiente no IntelliJ, e não diretamente no application.properties
+- Utilização de bibliotecas de logs
+- Implementar a paginação na listagem
+- Implementar a filtragem na busca
+- Documentação com Swagger
+- Implementação de testes de integração

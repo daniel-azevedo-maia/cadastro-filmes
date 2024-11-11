@@ -7,6 +7,7 @@ import com.danielazevedo.mycinechecker.repository.FilmeRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,6 +27,7 @@ public class FilmeService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional
     public FilmeDTO salvar(FilmeDTO filmeDTO) {
         Filme filme = modelMapper.map(filmeDTO, Filme.class);
         Filme savedFilme = filmeRepository.save(filme);
@@ -38,6 +40,7 @@ public class FilmeService {
         return modelMapper.map(filme, FilmeDTO.class);
     }
 
+    @Transactional
     public void excluirPorId(Long id) {
         if (!filmeRepository.existsById(id)) {
             throw new FilmeNotFoundException("Filme não encontrado para exclusão com id " + id);
