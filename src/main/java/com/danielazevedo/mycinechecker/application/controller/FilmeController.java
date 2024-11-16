@@ -1,35 +1,31 @@
-package com.danielazevedo.mycinechecker.controller;
+package com.danielazevedo.mycinechecker.application.controller;
 
-import com.danielazevedo.mycinechecker.dto.FilmeDTO;
-import com.danielazevedo.mycinechecker.exception.FilmeNotFoundException;
-import com.danielazevedo.mycinechecker.service.FilmeService;
+import com.danielazevedo.mycinechecker.application.dto.FilmeDTO;
+import com.danielazevedo.mycinechecker.application.exception.FilmeNotFoundException;
+import com.danielazevedo.mycinechecker.application.service.FilmeService;
 import jakarta.validation.Valid;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
 @RequestMapping("/api/v1/filmes")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class FilmeController {
+
+    private static final Logger logger = LoggerFactory.getLogger(FilmeController.class);
 
     private final FilmeService filmeService;
 
     @GetMapping
     public String listarFilmes(Model model) {
-        List<FilmeDTO> filmes = filmeService.listarTodos().stream()
-                .map(filme -> {
-                    filme.setDataAssistidoFormatada(filme.getDataAssistido()
-                            .format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-                    return filme;
-                })
-                .toList();
-
+        List<FilmeDTO> filmes = filmeService.listarTodos();
         model.addAttribute("filmes", filmes);
         return "filmes/listagem";
     }
@@ -56,9 +52,6 @@ public class FilmeController {
     @GetMapping("/{id}/editar")
     public String mostrarFormularioEdicao(@PathVariable("id") Long id, Model model) {
         FilmeDTO filme = filmeService.buscarPorId(id);
-        if (filme == null) {
-            throw new FilmeNotFoundException("Filme não encontrado com o ID " + id);
-        }
         model.addAttribute("filmeobj", filme);
         return "filmes/registro";
     }
@@ -80,7 +73,11 @@ public class FilmeController {
 
     @DeleteMapping("/{id}")
     public String excluirFilme(@PathVariable("id") Long id) {
-        filmeService.excluirPorId(id);
+        try {
+            filmeService.excluirPorId(id);
+        } catch (FilmeNotFoundException ex) {
+            logger.warn("Tentativa de excluir filme não encontrado. ID: {}", id);
+        }
         return "redirect:/api/v1/filmes";
     }
 }

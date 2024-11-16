@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela de Cadastro</title>
+    <link rel="stylesheet" href="/css/cadastro.css">
+</head>
+<body>
+<div class="login-container">
+    <div class="login-card">
+        <h1>Cadastro</h1>
+
+        <!-- Mensagens de erro ou sucesso -->
+        <div th:if="${errorMessage}" class="error-message">
+            <p th:text="${errorMessage}"></p>
+        </div>
+        <div th:if="${successMessage}" class="success-message">
+            <p th:text="${successMessage}"></p>
+        </div>
+
+        <form th:action="@{/auth/cadastro}" th:object="${objCadastro}" method="post">
+            <!-- Nome -->
+            <div class="input-group">
+                <label for="name">Nome</label>
+                <input type="text" id="name" th:field="*{username}" placeholder="Informe um nome de usuário" required>
+            </div>
+            <!-- E-mail -->
+            <div class="input-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" th:field="*{email}" placeholder="Informe seu e-mail" required>
+            </div>
+            <!-- Senha -->
+            <div class="input-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" th:field="*{password}" placeholder="Informe sua senha" required>
+            </div>
+            <!-- Botão -->
+            <button type="submit" class="btn">Cadastrar</button>
+        </form>
+
+        <div class="login-footer">
+            <p>Já tem uma conta? <a th:href="@{/auth/login}">Faça login</a></p>
+        </div>
+    </div>
+</div>
+<script src="/js/cadastro.js"></script>
+</body>
+</html>

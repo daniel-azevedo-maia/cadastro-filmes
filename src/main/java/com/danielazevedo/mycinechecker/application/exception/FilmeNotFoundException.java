@@ -1,4 +1,4 @@
-package com.danielazevedo.mycinechecker.exception;
+package com.danielazevedo.mycinechecker.application.exception;
 
 public class FilmeNotFoundException extends RuntimeException {
     public FilmeNotFoundException(String message) {

@@ -1,11 +1,11 @@
-package com.danielazevedo.mycinechecker.service;
+package com.danielazevedo.mycinechecker.application.service;
 
-import com.danielazevedo.mycinechecker.dto.FilmeDTO;
-import com.danielazevedo.mycinechecker.exception.FilmeNotFoundException;
-import com.danielazevedo.mycinechecker.model.Filme;
-import com.danielazevedo.mycinechecker.repository.FilmeRepository;
+import com.danielazevedo.mycinechecker.application.dto.FilmeDTO;
+import com.danielazevedo.mycinechecker.application.exception.FilmeNotFoundException;
+import com.danielazevedo.mycinechecker.domain.model.Filme;
+import com.danielazevedo.mycinechecker.domain.repository.FilmeRepository;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,13 +13,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class FilmeService {
 
-    @Autowired
-    private FilmeRepository filmeRepository;
-
-    @Autowired
-    private ModelMapper modelMapper;
+    private final FilmeRepository filmeRepository;
+    private final ModelMapper modelMapper;
 
     public List<FilmeDTO> listarTodos() {
         return filmeRepository.findAll().stream()

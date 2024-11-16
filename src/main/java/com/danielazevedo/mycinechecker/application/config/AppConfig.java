@@ -1,4 +1,4 @@
-package com.danielazevedo.mycinechecker.config;
+package com.danielazevedo.mycinechecker.application.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
