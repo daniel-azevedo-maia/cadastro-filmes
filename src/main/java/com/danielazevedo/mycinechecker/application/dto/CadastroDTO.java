@@ -6,18 +6,18 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+@Getter @Setter
 public class CadastroDTO {
 
-    @NotBlank(message = "O nome de usuário é obrigatório.")
+    @NotBlank(message = "O nome de usuário não pode estar vazio.")
+    @Size(min = 3, max = 50, message = "O nome de usuário deve ter entre 3 e 50 caracteres.")
     private String username;
 
-    @NotBlank(message = "O e-mail é obrigatório.")
-    @Email(message = "O e-mail deve ser válido.")
+    @NotBlank(message = "O e-mail não pode estar vazio.")
+    @Email(message = "E-mail inválido.")
     private String email;
 
-    @NotBlank(message = "A senha é obrigatória.")
-    @Size(min = 6, message = "A senha deve ter no mínimo 6 caracteres.")
+    @NotBlank(message = "A senha não pode estar vazia.")
+    @Size(min = 6, message = "A senha deve ter pelo menos 6 caracteres.")
     private String password;
 }

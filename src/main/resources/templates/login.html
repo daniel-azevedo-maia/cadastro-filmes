@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,14 +10,20 @@
 <div class="login-container">
     <div class="login-card">
         <h1>Login</h1>
-        <form id="loginForm">
+
+        <!-- Exibição de mensagem de erro -->
+        <div th:if="${errorMessage}" class="error-message">
+            <p th:text="${errorMessage}"></p>
+        </div>
+
+        <form id="loginForm" th:action="@{/auth/login}" th:object="${objLogin}" method="post">
             <div class="input-group">
-                <label for="email">E-mail</label>
-                <input type="email" id="email" placeholder="Digite seu e-mail" required>
+                <label for="username">Nome de usuário</label>
+                <input type="text" id="username" th:field="*{username}" placeholder="Digite seu nome de usuário" required>
             </div>
             <div class="input-group">
                 <label for="password">Senha</label>
-                <input type="password" id="password" placeholder="Digite sua senha" required>
+                <input type="password" id="password" th:field="*{password}" placeholder="Digite sua senha" required>
             </div>
             <button type="submit" class="btn">Entrar</button>
         </form>
@@ -27,6 +33,5 @@
         </div>
     </div>
 </div>
-<script src="/js/login.js"></script>
 </body>
 </html>

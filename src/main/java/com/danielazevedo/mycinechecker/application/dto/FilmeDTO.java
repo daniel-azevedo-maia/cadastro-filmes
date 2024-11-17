@@ -10,8 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-@Getter
-@Setter
+@Getter @Setter
 public class FilmeDTO {
 
     private Long id;

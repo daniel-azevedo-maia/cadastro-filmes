@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/api/v1/filmes")
+@RequestMapping("/filmes")
 @RequiredArgsConstructor
 public class FilmeController {
 
@@ -42,11 +42,10 @@ public class FilmeController {
             BindingResult result,
             Model model) {
         if (result.hasErrors()) {
-            model.addAttribute("filmeobj", filmeDTO);
             return "filmes/registro";
         }
         filmeService.salvar(filmeDTO);
-        return "redirect:/api/v1/filmes";
+        return "redirect:/filmes";
     }
 
     @GetMapping("/{id}/editar")
@@ -63,12 +62,11 @@ public class FilmeController {
             BindingResult result,
             Model model) {
         if (result.hasErrors()) {
-            model.addAttribute("filmeobj", filmeDTO);
             return "filmes/registro";
         }
         filmeDTO.setId(id);
         filmeService.salvar(filmeDTO);
-        return "redirect:/api/v1/filmes";
+        return "redirect:/filmes";
     }
 
     @DeleteMapping("/{id}")
@@ -78,6 +76,6 @@ public class FilmeController {
         } catch (FilmeNotFoundException ex) {
             logger.warn("Tentativa de excluir filme não encontrado. ID: {}", id);
         }
-        return "redirect:/api/v1/filmes";
+        return "redirect:/filmes";
     }
 }
