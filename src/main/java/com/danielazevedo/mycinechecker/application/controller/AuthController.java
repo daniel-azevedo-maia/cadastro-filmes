@@ -27,18 +27,6 @@ public class AuthController {
         return "login";
     }
 
-    @PostMapping("/login")
-    public String login(
-            @ModelAttribute("objLogin") LoginDTO loginDTO,
-            Model model) {
-        boolean autenticado = userService.validarLogin(loginDTO);
-        if (autenticado) {
-            return "redirect:/home"; // Redireciona após login bem-sucedido
-        }
-        model.addAttribute("errorMessage", "Usuário ou senha inválidos.");
-        return "login";
-    }
-
     @GetMapping("/cadastro")
     public String cadastroPage(Model model) {
         model.addAttribute("objCadastro", new CadastroDTO());

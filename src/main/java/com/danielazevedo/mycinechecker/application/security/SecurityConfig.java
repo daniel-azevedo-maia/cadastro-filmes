@@ -24,9 +24,9 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
-                        .loginPage("/auth/login") // Página de login personalizada
-                        .defaultSuccessUrl("/home", true) // Página inicial após login bem-sucedido
-                        .failureUrl("/auth/login?error=true") // Redireciona em caso de erro
+                        .loginPage("/auth/login")
+                        .defaultSuccessUrl("/home", true)
+                        .failureUrl("/auth/login?error=true")
                         .permitAll()
                 )
                 .logout(logout -> logout
