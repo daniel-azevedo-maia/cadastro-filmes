@@ -1,11 +1,7 @@
-/* Reset básico */
-body, h1, p, label, input, button {
+/* cadastro.css */
+body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-body {
     font-family: 'Arial', sans-serif;
     background: linear-gradient(135deg, #6a11cb, #2575fc);
     display: flex;
@@ -15,7 +11,6 @@ body {
     color: #fff;
 }
 
-/* Container Principal */
 .login-container {
     display: flex;
     justify-content: center;
@@ -35,14 +30,12 @@ body {
     color: #333;
 }
 
-/* Título */
 .login-card h1 {
     font-size: 2rem;
     margin-bottom: 20px;
     color: #6a11cb;
 }
 
-/* Inputs */
 .input-group {
     margin-bottom: 20px;
     text-align: left;
@@ -61,7 +54,7 @@ body {
     border: 1px solid #ddd;
     border-radius: 8px;
     outline: none;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: border-color 0.3s;
 }
 
 .input-group input:focus {
@@ -69,7 +62,6 @@ body {
     box-shadow: 0 0 5px rgba(106, 17, 203, 0.5);
 }
 
-/* Botão */
 .btn {
     background: #6a11cb;
     color: #fff;
@@ -79,33 +71,25 @@ body {
     font-size: 1rem;
     cursor: pointer;
     width: 100%;
-    transition: background 0.3s ease;
+    transition: background 0.3s;
 }
 
 .btn:hover {
     background: #2575fc;
 }
 
-/* Mensagens */
 .error-message {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
-    border-radius: 8px;
-    padding: 10px;
+    color: #ff0000;
+    font-weight: bold;
     margin-bottom: 15px;
 }
 
 .success-message {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
-    border-radius: 8px;
-    padding: 10px;
+    color: #28a745;
+    font-weight: bold;
     margin-bottom: 15px;
 }
 
-/* Rodapé */
 .login-footer {
     margin-top: 20px;
     font-size: 0.9rem;
@@ -114,7 +98,7 @@ body {
 .login-footer a {
     color: #6a11cb;
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: color 0.3s;
 }
 
 .login-footer a:hover {

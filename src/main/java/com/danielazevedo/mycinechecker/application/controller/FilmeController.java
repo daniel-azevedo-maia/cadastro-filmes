@@ -2,6 +2,7 @@ package com.danielazevedo.mycinechecker.application.controller;
 
 import com.danielazevedo.mycinechecker.application.dto.FilmeDTO;
 import com.danielazevedo.mycinechecker.application.exception.FilmeNotFoundException;
+import com.danielazevedo.mycinechecker.application.exception.UsuarioNaoEncontradoException;
 import com.danielazevedo.mycinechecker.application.service.FilmeService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -42,30 +43,49 @@ public class FilmeController {
             BindingResult result,
             Model model) {
         if (result.hasErrors()) {
+            logger.error("Erro ao validar os dados do filme: {}", result.getAllErrors());
             return "filmes/registro";
         }
-        filmeService.salvar(filmeDTO);
+        try {
+            filmeService.salvar(filmeDTO);
+        } catch (UsuarioNaoEncontradoException ex) {
+            logger.error("Erro ao associar filme ao usuário: {}", ex.getMessage());
+            model.addAttribute("errorMessage", "Usuário não encontrado para salvar o filme.");
+            return "filmes/registro";
+        }
         return "redirect:/filmes";
     }
 
     @GetMapping("/{id}/editar")
     public String mostrarFormularioEdicao(@PathVariable("id") Long id, Model model) {
-        FilmeDTO filme = filmeService.buscarPorId(id);
-        model.addAttribute("filmeobj", filme);
-        return "filmes/registro";
+        try {
+            FilmeDTO filme = filmeService.buscarPorId(id);
+            model.addAttribute("filmeobj", filme);
+            return "filmes/registro";
+        } catch (FilmeNotFoundException ex) {
+            logger.warn("Tentativa de edição para filme não encontrado: ID {}", id);
+            return "redirect:/filmes";
+        }
     }
 
-    @PutMapping("/{id}")
+    @PostMapping("/{id}")
     public String atualizarFilme(
             @PathVariable("id") Long id,
-            @Valid @ModelAttribute FilmeDTO filmeDTO,
+            @Valid @ModelAttribute("filmeobj") FilmeDTO filmeDTO,
             BindingResult result,
             Model model) {
         if (result.hasErrors()) {
+            logger.error("Erro ao validar os dados do filme: {}", result.getAllErrors());
             return "filmes/registro";
         }
-        filmeDTO.setId(id);
-        filmeService.salvar(filmeDTO);
+        try {
+            filmeDTO.setId(id);
+            filmeService.salvar(filmeDTO);
+        } catch (UsuarioNaoEncontradoException ex) {
+            logger.error("Erro ao associar filme ao usuário: {}", ex.getMessage());
+            model.addAttribute("errorMessage", "Usuário não encontrado para atualizar o filme.");
+            return "filmes/registro";
+        }
         return "redirect:/filmes";
     }
 
@@ -74,7 +94,7 @@ public class FilmeController {
         try {
             filmeService.excluirPorId(id);
         } catch (FilmeNotFoundException ex) {
-            logger.warn("Tentativa de excluir filme não encontrado. ID: {}", id);
+            logger.warn("Tentativa de excluir filme não encontrado: ID {}", id);
         }
         return "redirect:/filmes";
     }

@@ -3,9 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index</title>
+    <title>Bem-vindo</title>
+    <link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
-<h1>Seja bem-vindo, <span th:text="${username}"></span>!</h1>
+<header>
+    <nav>
+        <div class="user-info">
+            <span th:text="'Olá, ' + ${username} + '!'"></span>
+        </div>
+        <div class="nav-actions">
+            <a th:href="@{/logout}" class="btn-logout">Logout</a>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <div class="main-content">
+        <h1>Gerencie seus Filmes</h1>
+        <p>Acompanhe os filmes que já assistiu ou cadastre novos para sua lista!</p>
+    </div>
+
+    <div class="button-container">
+        <a th:href="@{/filmes}" class="btn">Listar Filmes Assistidos</a>
+        <a th:href="@{/filmes/novo}" class="btn">Cadastrar Novo Filme</a>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2024 MyCineChecker. Todos os direitos reservados.</p>
+</footer>
 </body>
 </html>

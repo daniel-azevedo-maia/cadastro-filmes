@@ -28,6 +28,8 @@ public class FilmeDTO {
     @NotNull(message = "As estrelas são obrigatórias")
     private Integer estrelas;
 
+    private Long userId;
+
     public String getDataAssistidoFormatada() {
         return dataAssistido != null ? dataAssistido.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) : null;
     }

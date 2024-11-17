@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Filmes</title>
+    <link rel="stylesheet" href="/css/listagem.css">
+</head>
+<body>
+<div class="login-container">
+    <div class="login-card">
+        <h1>Filmes Assistidos</h1>
+
+        <!-- Mensagem de erro -->
+        <div th:if="${errorMessage}" class="error-message">
+            <p th:text="${errorMessage}"></p>
+        </div>
+
+        <!-- Listagem de Filmes -->
+        <table style="width: 100%; text-align: left; border-collapse: collapse;">
+            <thead>
+            <tr>
+                <th style="border-bottom: 2px solid #333; padding: 8px;">Título</th>
+                <th style="border-bottom: 2px solid #333; padding: 8px;">Data Assistida</th>
+                <th style="border-bottom: 2px solid #333; padding: 8px;">Opinião</th>
+                <th style="border-bottom: 2px solid #333; padding: 8px;">Estrelas</th>
+                <th style="border-bottom: 2px solid #333; padding: 8px;">Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="filme : ${filmes}">
+                <td style="padding: 8px;" th:text="${filme.titulo}"></td>
+                <td style="padding: 8px;" th:text="${filme.dataAssistidoFormatada}"></td>
+                <td style="padding: 8px;" th:text="${filme.opiniao}"></td>
+                <td style="padding: 8px;" th:text="${filme.estrelas}"></td>
+                <td style="padding: 8px;">
+                    <a th:href="@{/filmes/{id}/editar(id=${filme.id})}" style="margin-right: 10px;">Editar</a>
+                    <a th:href="@{/filmes/{id}/delete(id=${filme.id})}" onclick="return confirm('Tem certeza que deseja excluir?');">Excluir</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="login-footer" style="margin-top: 20px;">
+            <p><a th:href="@{/filmes/novo}">Registrar novo filme</a></p>
+            <p><a th:href="@{/home}">Voltar para o início</a></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

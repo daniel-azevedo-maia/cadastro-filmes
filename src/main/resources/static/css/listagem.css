@@ -1,0 +1,141 @@
+/* Reset básico */
+body, h1, p, a, table, th, td {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+}
+
+/* Container Principal */
+.login-container {
+    width: 100%;
+    max-width: 900px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    padding: 30px;
+    color: #333;
+}
+
+/* Cabeçalho */
+.login-card h1 {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #6a11cb;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Mensagem de Erro */
+.error-message {
+    color: #ff0000;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+thead {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: #ffffff;
+    text-align: left;
+}
+
+thead th {
+    padding: 15px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+tbody tr {
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #ddd;
+    transition: background 0.3s ease;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f4f4f4;
+}
+
+tbody tr:hover {
+    background-color: #e8f0fe;
+}
+
+tbody td {
+    padding: 12px 15px;
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+tbody td a {
+    text-decoration: none;
+    color: #6a11cb;
+    font-weight: bold;
+    margin: 0 5px;
+    transition: color 0.3s ease;
+}
+
+tbody td a:hover {
+    color: #2575fc;
+}
+
+/* Rodapé de Ações */
+.login-footer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.login-footer a {
+    color: #6a11cb;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    margin: 10px;
+    font-size: 0.9rem;
+    padding: 10px 15px;
+    border: 2px solid #6a11cb;
+    border-radius: 8px;
+    background: #fff;
+    transition: all 0.3s ease;
+}
+
+.login-footer a:hover {
+    background: #6a11cb;
+    color: #fff;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    table {
+        font-size: 0.8rem;
+    }
+
+    tbody td, thead th {
+        padding: 10px;
+    }
+
+    .login-footer a {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+}
