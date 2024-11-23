@@ -15,6 +15,7 @@ public class ModelMapperConfig {
 
         modelMapper.typeMap(CadastroDTO.class, User.class)
                 .addMappings(mapper -> {
+                    mapper.map(CadastroDTO::getNome, User::setNome);
                     mapper.map(CadastroDTO::getUsername, User::setUsername);
                     mapper.map(CadastroDTO::getEmail, User::setEmail);
                     mapper.map(CadastroDTO::getPassword, User::setPassword);

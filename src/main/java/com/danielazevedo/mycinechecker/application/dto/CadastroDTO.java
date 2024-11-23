@@ -9,6 +9,10 @@ import lombok.Setter;
 @Getter @Setter
 public class CadastroDTO {
 
+    @NotBlank(message = "O nome do usuário não pode estar vazio.")
+    @Size(min = 3, max = 150, message = "O nome do usuário deve ter entre 3 e 150 caracteres.")
+    private String nome;
+
     @NotBlank(message = "O nome de usuário não pode estar vazio.")
     @Size(min = 3, max = 50, message = "O nome de usuário deve ter entre 3 e 50 caracteres.")
     private String username;

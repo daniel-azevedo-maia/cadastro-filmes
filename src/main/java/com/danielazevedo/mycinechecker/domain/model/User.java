@@ -21,6 +21,11 @@ public class User {
     private Long id;
 
     @NotBlank
+    @Size(min = 3, max = 150)
+    @Column(nullable = false)
+    private String nome;
+
+    @NotBlank
     @Size(min = 3, max = 50)
     @Column(nullable = false, unique = true)
     private String username;

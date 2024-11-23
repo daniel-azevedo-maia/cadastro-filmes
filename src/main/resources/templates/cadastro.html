@@ -19,23 +19,32 @@
             <p th:text="${successMessage}"></p>
         </div>
 
-        <form th:action="@{/auth/cadastro}" th:object="${objCadastro}" method="post">
+        <form th:action="@{/auth/cadastro}" th:object="${objCadastro}" method="post" autocomplete="off">
+
             <!-- Nome -->
             <div class="input-group">
-                <label for="name">Nome</label>
-                <input type="text" id="name" th:field="*{username}" placeholder="Informe um nome de usuário" required>
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" th:field="*{nome}" placeholder="Informe seu nome e sobrenome" required>
             </div>
+
+            <!-- Username -->
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" th:field="*{username}" placeholder="Informe um nome de usuário" required>
+            </div>
+
             <!-- E-mail -->
             <div class="input-group">
                 <label for="email">E-mail</label>
                 <input type="email" id="email" th:field="*{email}" placeholder="Informe seu e-mail" required>
             </div>
+
             <!-- Senha -->
             <div class="input-group">
                 <label for="password">Senha</label>
                 <input type="password" id="password" th:field="*{password}" placeholder="Informe sua senha" required>
             </div>
-            <!-- Botão -->
+
             <button type="submit" class="btn">Cadastrar</button>
         </form>
 

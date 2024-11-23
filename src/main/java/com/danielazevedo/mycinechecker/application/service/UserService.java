@@ -36,6 +36,7 @@ public class UserService {
         }
 
         User novoUsuario = new User();
+        novoUsuario.setNome(cadastroDTO.getNome());
         novoUsuario.setUsername(cadastroDTO.getUsername());
         novoUsuario.setEmail(cadastroDTO.getEmail());
         novoUsuario.setPassword(passwordEncoder.encode(cadastroDTO.getPassword()));
