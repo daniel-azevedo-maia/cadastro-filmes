@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Filmes</title>
-    <link rel="stylesheet" href="/css/listagem.css">
+    <link rel="stylesheet" href="/css/shared.css"> <!-- Estilos compartilhados -->
+    <link rel="stylesheet" href="/css/listagem.css"> <!-- Estilos específicos -->
 </head>
 <body>
-<div class="login-container">
-    <div class="login-card">
+<!-- Importando o cabeçalho -->
+<div th:insert="fragments/header :: header"></div>
+
+<div class="container">
+    <div class="card">
         <h1>Filmes Assistidos</h1>
 
         <!-- Mensagem de erro -->
@@ -16,36 +20,81 @@
             <p th:text="${errorMessage}"></p>
         </div>
 
-        <!-- Listagem de Filmes -->
-        <table style="width: 100%; text-align: left; border-collapse: collapse;">
+        <!-- Mensagem para lista vazia -->
+        <div th:if="${filmes == null || #lists.isEmpty(filmes)}" class="empty-message">
+            <p>Nenhum filme foi encontrado.</p>
+        </div>
+
+        <!-- Tabela de Filmes -->
+        <table th:if="${filmes != null && !#lists.isEmpty(filmes)}" class="film-table">
             <thead>
             <tr>
-                <th style="border-bottom: 2px solid #333; padding: 8px;">Título</th>
-                <th style="border-bottom: 2px solid #333; padding: 8px;">Data Assistida</th>
-                <th style="border-bottom: 2px solid #333; padding: 8px;">Opinião</th>
-                <th style="border-bottom: 2px solid #333; padding: 8px;">Estrelas</th>
-                <th style="border-bottom: 2px solid #333; padding: 8px;">Ações</th>
+                <th>Título</th>
+                <th>Data Assistida</th>
+                <th>Opinião</th>
+                <th>Estrelas</th>
+                <th>Ações</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="filme : ${filmes}">
-                <td style="padding: 8px;" th:text="${filme.titulo}"></td>
-                <td style="padding: 8px;" th:text="${filme.dataAssistidoFormatada}"></td>
-                <td style="padding: 8px;" th:text="${filme.opiniao}"></td>
-                <td style="padding: 8px;" th:text="${filme.estrelas}"></td>
-                <td style="padding: 8px;">
-                    <a th:href="@{/filmes/{id}/editar(id=${filme.id})}" style="margin-right: 10px;">Editar</a>
-                    <a th:href="@{/filmes/{id}/delete(id=${filme.id})}" onclick="return confirm('Tem certeza que deseja excluir?');">Excluir</a>
+                <td th:text="${filme.titulo}"></td>
+                <td th:text="${filme.dataAssistidoFormatada}"></td>
+                <td th:text="${filme.opiniao}"></td>
+                <td th:text="${filme.estrelas}"></td>
+                <td>
+                    <button class="btn-edit"
+                            th:attr="onclick=|openModal(${filme.id}, '${filme.titulo}', '${filme.dataAssistidoFormatada}', '${filme.opiniao}', ${filme.estrelas})|">
+                        Editar
+                    </button>
+                    <form th:action="@{/filmes/{id}(id=${filme.id})}" method="post" style="display: inline;">
+                        <input type="hidden" name="_method" value="delete">
+                        <button type="submit" class="btn-delete" onclick="return confirm('Tem certeza que deseja excluir?');">Excluir</button>
+                    </form>
                 </td>
             </tr>
             </tbody>
         </table>
 
-        <div class="login-footer" style="margin-top: 20px;">
-            <p><a th:href="@{/filmes/novo}">Registrar novo filme</a></p>
-            <p><a th:href="@{/home}">Voltar para o início</a></p>
+        <!-- Botões de ação -->
+        <div class="footer-actions">
+            <a th:href="@{/filmes/novo}" class="btn">Registrar Novo Filme</a>
+            <a th:href="@{/home}" class="btn">Voltar para o Início</a>
         </div>
     </div>
 </div>
+
+<!-- Modal para edição -->
+<div id="editModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Editar Filme</h2>
+        <form id="editForm" method="post">
+            <input type="hidden" id="filmeId" name="id">
+            <div class="input-group">
+                <label for="titulo">Título</label>
+                <input type="text" id="titulo" name="titulo" required>
+            </div>
+            <div class="input-group">
+                <label for="dataAssistido">Data Assistida</label>
+                <input type="date" id="dataAssistido" name="dataAssistido" required>
+            </div>
+            <div class="input-group">
+                <label for="opiniao">Opinião</label>
+                <input type="text" id="opiniao" name="opiniao">
+            </div>
+            <div class="input-group">
+                <label for="estrelas">Estrelas</label>
+                <input type="number" id="estrelas" name="estrelas" min="1" max="5" required>
+            </div>
+            <button type="submit" class="btn">Salvar Alterações</button>
+        </form>
+    </div>
+</div>
+
+<!-- Importando o rodapé -->
+<div th:insert="fragments/footer :: footer"></div>
+
+<script src="/js/listagem.js"></script>
 </body>
 </html>

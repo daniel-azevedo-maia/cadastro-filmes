@@ -4,34 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bem-vindo</title>
-    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/shared.css"> <!-- Estilos compartilhados -->
+    <link rel="stylesheet" href="/css/index.css"> <!-- Estilos específicos da página inicial -->
 </head>
 <body>
-<header>
-    <nav>
-        <div class="user-info">
-            <span th:text="'Olá, ' + ${username} + '!'"></span>
-        </div>
-        <div class="nav-actions">
-            <a th:href="@{/logout}" class="btn-logout">Logout</a>
-        </div>
-    </nav>
-</header>
+<!-- Importando o cabeçalho -->
+<div th:insert="fragments/header :: header"></div>
 
 <main>
-    <div class="main-content">
+    <section class="intro">
         <h1>Gerencie seus Filmes</h1>
         <p>Acompanhe os filmes que já assistiu ou cadastre novos para sua lista!</p>
-    </div>
+    </section>
 
-    <div class="button-container">
+    <section class="actions">
         <a th:href="@{/filmes}" class="btn">Listar Filmes Assistidos</a>
         <a th:href="@{/filmes/novo}" class="btn">Cadastrar Novo Filme</a>
-    </div>
+    </section>
 </main>
 
-<footer>
-    <p>&copy; 2024 MyCineChecker. Todos os direitos reservados.</p>
-</footer>
+<!-- Importando o rodapé -->
+<div th:insert="fragments/footer :: footer"></div>
 </body>
 </html>

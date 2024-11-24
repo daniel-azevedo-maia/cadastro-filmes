@@ -1,152 +1,142 @@
 /* Reset básico */
-body, h1, p, a, nav, footer {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Poppins', sans-serif;
     background-color: #f8f9fa;
     color: #333;
     line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-/* Estilo do cabeçalho */
+/* Navbar */
 header {
-    background: linear-gradient(45deg, #6a11cb, #2575fc);
+    background-color: #6a11cb;
     color: #fff;
-    padding: 10px 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 15px 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-header nav {
+.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .user-info span {
-    font-size: 1.1em;
+    font-size: 1.2rem;
     font-weight: bold;
-    letter-spacing: 0.5px;
 }
 
-.nav-actions .btn-logout {
-    background-color: #d72638;
+.btn-logout {
+    background-color: #ff4d4d;
     color: #fff;
     text-decoration: none;
-    padding: 8px 12px;
-    border-radius: 5px;
-    font-size: 0.9em;
-    transition: background-color 0.3s ease-in-out;
+    padding: 10px 20px;
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+    font-size: 0.9rem;
 }
 
-.nav-actions .btn-logout:hover {
-    background-color: #9e1c2c;
+.btn-logout:hover {
+    background-color: #cc0000;
 }
 
-/* Estilo do conteúdo principal */
+/* Main Content */
 main {
+    flex: 1;
     padding: 30px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
     text-align: center;
 }
 
-.main-content h1 {
-    font-size: 2.2em;
+.intro h1 {
+    font-size: 2.5rem;
     color: #333;
     margin-bottom: 15px;
 }
 
-.main-content p {
-    font-size: 1.1em;
-    color: #555;
+.intro p {
+    font-size: 1.1rem;
+    color: #666;
     margin-bottom: 30px;
 }
 
-/* Botões */
-.button-container {
+/* Action Buttons */
+.actions {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
-.button-container .btn {
-    display: inline-block;
+.actions .btn {
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+    color: #fff;
     text-decoration: none;
-    color: #fff;
-    background: linear-gradient(45deg, #9f44d3, #5c6bf3);
-    padding: 10px 15px;
-    border-radius: 50px;
-    font-size: 0.95em;
-    transition: transform 0.2s, background 0.3s ease-in-out;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
-    text-align: center;
+    padding: 15px 25px;
+    border-radius: 30px;
+    font-size: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, background 0.3s ease;
 }
 
-.button-container .btn:hover {
-    background: linear-gradient(45deg, #5c6bf3, #9f44d3);
+.actions .btn:hover {
     transform: translateY(-3px);
+    background: linear-gradient(45deg, #2575fc, #6a11cb);
 }
 
-/* Estilo do rodapé */
+/* Footer */
 footer {
-    background: #6a11cb;
+    background-color: #6a11cb;
     color: #fff;
     text-align: center;
-    padding: 10px 0;
-    margin-top: 40px;
-    font-size: 0.9em;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    padding: 15px 0;
+    font-size: 0.9rem;
+    margin-top: auto;
 }
 
 /* Responsividade */
 @media (max-width: 768px) {
-    header nav {
+    .navbar {
         flex-direction: column;
-        align-items: flex-start;
+        text-align: center;
     }
 
-    .user-info span {
-        font-size: 1em;
+    .actions .btn {
+        padding: 12px 20px;
+        font-size: 0.9rem;
     }
 
-    .nav-actions .btn-logout {
-        font-size: 0.85em;
-        padding: 6px 10px;
+    .intro h1 {
+        font-size: 2rem;
     }
 
-    .main-content h1 {
-        font-size: 2em;
-    }
-
-    .main-content p {
-        font-size: 1em;
-    }
-
-    .button-container .btn {
-        padding: 8px 12px;
-        font-size: 0.9em;
+    .intro p {
+        font-size: 1rem;
     }
 }
 
 @media (max-width: 480px) {
-    .nav-actions .btn-logout {
-        padding: 5px 8px;
+    .btn {
+        padding: 10px 15px;
+        font-size: 0.85rem;
     }
 
-    .main-content h1 {
-        font-size: 1.8em;
+    .intro h1 {
+        font-size: 1.8rem;
     }
 
-    .main-content p {
-        font-size: 0.9em;
-    }
-
-    .button-container .btn {
-        font-size: 0.85em;
-        padding: 7px 10px;
+    .intro p {
+        font-size: 0.9rem;
     }
 }

@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -25,14 +26,25 @@ public class FilmeController {
     private final FilmeService filmeService;
 
     @GetMapping
-    public String listarFilmes(Model model) {
+    public String listarFilmes(Model model, Principal principal) {
+
+        String username = principal.getName();
+        model.addAttribute("username", username);
+
         List<FilmeDTO> filmes = filmeService.listarTodos();
+        if (filmes == null) {
+            filmes = List.of(); // Inicializa com uma lista vazia
+        }
         model.addAttribute("filmes", filmes);
         return "filmes/listagem";
     }
 
     @GetMapping("/novo")
-    public String mostrarFormularioCadastro(Model model) {
+    public String mostrarFormularioCadastro(Model model, Principal principal) {
+
+        String username = principal.getName();
+        model.addAttribute("username", username);
+
         model.addAttribute("filmeobj", new FilmeDTO());
         return "filmes/registro";
     }
@@ -41,7 +53,12 @@ public class FilmeController {
     public String cadastrarFilme(
             @Valid @ModelAttribute("filmeobj") FilmeDTO filmeDTO,
             BindingResult result,
-            Model model) {
+            Model model,
+            Principal principal) {
+        // Adiciona o username ao modelo
+        String username = principal.getName();
+        model.addAttribute("username", username);
+
         if (result.hasErrors()) {
             logger.error("Erro ao validar os dados do filme: {}", result.getAllErrors());
             return "filmes/registro";
@@ -57,7 +74,11 @@ public class FilmeController {
     }
 
     @GetMapping("/{id}/editar")
-    public String mostrarFormularioEdicao(@PathVariable("id") Long id, Model model) {
+    public String mostrarFormularioEdicao(@PathVariable("id") Long id, Model model, Principal principal) {
+        // Adiciona o username ao modelo
+        String username = principal.getName();
+        model.addAttribute("username", username);
+
         try {
             FilmeDTO filme = filmeService.buscarPorId(id);
             model.addAttribute("filmeobj", filme);
@@ -73,7 +94,12 @@ public class FilmeController {
             @PathVariable("id") Long id,
             @Valid @ModelAttribute("filmeobj") FilmeDTO filmeDTO,
             BindingResult result,
-            Model model) {
+            Model model,
+            Principal principal) {
+        // Adiciona o username ao modelo
+        String username = principal.getName();
+        model.addAttribute("username", username);
+
         if (result.hasErrors()) {
             logger.error("Erro ao validar os dados do filme: {}", result.getAllErrors());
             return "filmes/registro";
@@ -90,7 +116,11 @@ public class FilmeController {
     }
 
     @DeleteMapping("/{id}")
-    public String excluirFilme(@PathVariable("id") Long id) {
+    public String excluirFilme(@PathVariable("id") Long id, Model model, Principal principal) {
+        // Adiciona o username ao modelo
+        String username = principal.getName();
+        model.addAttribute("username", username);
+
         try {
             filmeService.excluirPorId(id);
         } catch (FilmeNotFoundException ex) {

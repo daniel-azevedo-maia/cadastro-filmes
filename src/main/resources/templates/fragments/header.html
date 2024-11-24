@@ -1,0 +1,10 @@
+<header>
+    <nav class="navbar">
+        <div class="user-info">
+            <span th:text="'Olá, ' + ${username} + '!'"></span>
+        </div>
+        <div class="nav-actions">
+            <a th:href="@{/logout}" class="btn btn-logout">Logout</a>
+        </div>
+    </nav>
+</header>
