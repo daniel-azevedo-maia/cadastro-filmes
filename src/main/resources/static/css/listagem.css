@@ -1,3 +1,5 @@
+/* listagem.css */
+
 /* Reset básico */
 * {
     margin: 0;
@@ -13,41 +15,6 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-}
-
-/* Navbar */
-header {
-    background-color: #6a11cb;
-    color: #fff;
-    padding: 15px 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.user-info span {
-    font-size: 1.2rem;
-    font-weight: bold;
-}
-
-.btn-logout {
-    background-color: #ff4d4d;
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 25px;
-    transition: background-color 0.3s ease;
-    font-size: 0.9rem;
-}
-
-.btn-logout:hover {
-    background-color: #cc0000;
 }
 
 /* Container principal */
@@ -228,11 +195,6 @@ header {
 
 /* Responsividade */
 @media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        text-align: center;
-    }
-
     .card h1 {
         font-size: 2rem;
     }
