@@ -3,6 +3,7 @@ package com.danielazevedo.mycinechecker.application.service;
 import com.danielazevedo.mycinechecker.application.dto.CadastroDTO;
 import com.danielazevedo.mycinechecker.application.dto.LoginDTO;
 import com.danielazevedo.mycinechecker.application.exception.UsuarioExistenteException;
+import com.danielazevedo.mycinechecker.application.exception.UsuarioNaoEncontradoException;
 import com.danielazevedo.mycinechecker.domain.model.User;
 import com.danielazevedo.mycinechecker.domain.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -43,4 +44,11 @@ public class UserService {
 
         userRepository.save(novoUsuario);
     }
+
+    public User buscarUsuarioPeloUsername(String username) throws UsuarioNaoEncontradoException {
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new UsuarioNaoEncontradoException("Usuário não encontrado: " + username));
+    }
+
+
 }

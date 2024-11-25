@@ -1,6 +1,8 @@
 package com.danielazevedo.mycinechecker.application.controller;
 
-import com.danielazevedo.mycinechecker.application.dto.LoginDTO;
+import com.danielazevedo.mycinechecker.application.exception.UsuarioNaoEncontradoException;
+import com.danielazevedo.mycinechecker.application.service.UserService;
+import com.danielazevedo.mycinechecker.domain.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -14,6 +16,8 @@ import java.security.Principal;
 @RequiredArgsConstructor
 @Controller
 public class HomeController {
+
+    private final UserService userService;
 
     @GetMapping("/")
     public String redirecionarParaLoginOuHome() {
@@ -30,10 +34,28 @@ public class HomeController {
 
     @GetMapping("/home")
     public String home(Model model, Principal principal) {
-        String username = principal.getName();
-        model.addAttribute("username", username);
+        // Adiciona o nome do usuário ao modelo ou exibe mensagem de visitante
+        adicionarUsuarioAoModelo(model, principal);
 
         return "index";
     }
 
+    /**
+     * Método auxiliar para adicionar o nome do usuário ao modelo.
+     * Se o usuário não estiver autenticado ou não for encontrado, exibe mensagem de "Visitante".
+     */
+    private void adicionarUsuarioAoModelo(Model model, Principal principal) {
+        if (principal == null) {
+            model.addAttribute("nome", "Visitante");
+            return;
+        }
+
+        String username = principal.getName();
+        try {
+            User user = userService.buscarUsuarioPeloUsername(username);
+            model.addAttribute("nome", user.getNome());
+        } catch (UsuarioNaoEncontradoException ex) {
+            model.addAttribute("nome", "Usuário não encontrado");
+        }
+    }
 }
