@@ -1,43 +1,95 @@
-/* cadastro.css */
-body {
+/* registro.css */
+
+/* Reset básico */
+* {
     margin: 0;
     padding: 0;
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #6a11cb, #2575fc);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    color: #fff;
+    box-sizing: border-box;
 }
 
-.login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 20px;
-}
-
-.login-card {
-    background: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    padding: 30px;
-    max-width: 400px;
-    width: 100%;
-    text-align: center;
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
     color: #333;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Garante que o footer fique ao final */
 }
 
-.login-card h1 {
-    font-size: 2rem;
-    margin-bottom: 20px;
+/* Header */
+header {
+    background-color: #6a11cb;
+    color: #fff;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.navbar .user-info span {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.navbar .btn-logout {
+    background: linear-gradient(45deg, #ff7e5f, #feb47b);
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .btn-logout:hover {
+    background: linear-gradient(45deg, #feb47b, #ff7e5f);
+    transform: translateY(-3px);
+}
+
+/* Container */
+.container {
+    flex: 1; /* Faz o container ocupar todo o espaço disponível */
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Card */
+.card h1 {
+    font-size: 2.5rem;
     color: #6a11cb;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
-.input-group {
+.error-message, .success-message {
+    font-size: 1rem;
     margin-bottom: 20px;
+    text-align: center;
+}
+
+.error-message {
+    color: #d72638;
+}
+
+.success-message {
+    color: #28a745;
+}
+
+/* Input Groups */
+.input-group {
+    margin-bottom: 15px;
     text-align: left;
 }
 
@@ -45,74 +97,96 @@ body {
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
+    color: #333;
 }
 
 .input-group input {
     width: 100%;
     padding: 10px;
-    font-size: 1rem;
     border: 1px solid #ddd;
-    border-radius: 8px;
-    outline: none;
-    transition: border-color 0.3s;
+    border-radius: 5px;
+    font-size: 1rem;
 }
 
 .input-group input:focus {
     border-color: #6a11cb;
-    box-shadow: 0 0 5px rgba(106, 17, 203, 0.5);
+    outline: none;
+    box-shadow: 0 0 5px rgba(106, 17, 203, 0.3);
+}
+
+/* Botões */
+.buttons-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Espaçamento entre os botões */
+    margin-top: 20px;
 }
 
 .btn {
-    background: #6a11cb;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 0.9rem;
     color: #fff;
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
     border: none;
-    padding: 12px 20px;
-    border-radius: 8px;
-    font-size: 1rem;
+    border-radius: 30px;
+    text-decoration: none;
     cursor: pointer;
-    width: 100%;
-    transition: background 0.3s;
+    transition: transform 0.3s ease, background 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.btn.secondary {
+    background: linear-gradient(45deg, #ff7e5f, #feb47b);
 }
 
 .btn:hover {
-    background: #2575fc;
+    transform: translateY(-3px);
+    background: linear-gradient(45deg, #2575fc, #6a11cb);
 }
 
-.error-message {
-    color: #ff0000;
-    font-weight: bold;
-    margin-bottom: 15px;
+.btn.secondary:hover {
+    background: linear-gradient(45deg, #feb47b, #ff7e5f);
 }
 
-.success-message {
-    color: #28a745;
-    font-weight: bold;
-    margin-bottom: 15px;
-}
-
-.login-footer {
-    margin-top: 20px;
+/* Footer */
+footer {
+    background-color: #6a11cb;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
     font-size: 0.9rem;
-}
-
-.login-footer a {
-    color: #6a11cb;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.login-footer a:hover {
-    color: #2575fc;
+    margin-top: auto; /* Garante que o footer fique ao final */
 }
 
 /* Responsividade */
-@media (max-width: 480px) {
-    .login-card {
-        padding: 20px;
+@media (max-width: 768px) {
+    .card h1 {
+        font-size: 2rem;
     }
 
     .btn {
+        padding: 8px 15px;
+        font-size: 0.85rem;
+    }
+
+    .input-group input {
         font-size: 0.9rem;
-        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+
+    .card h1 {
+        font-size: 1.8rem;
+    }
+
+    .input-group input {
+        font-size: 0.8rem;
     }
 }

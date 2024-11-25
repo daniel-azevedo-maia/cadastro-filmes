@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +7,12 @@
     <link rel="stylesheet" href="/css/registro.css">
 </head>
 <body>
-<div class="login-container">
-    <div class="login-card">
-        <h1>Cadastro de Filme</h1>
+<!-- Importando o cabeçalho -->
+<div th:insert="fragments/header :: header"></div>
+
+<main class="container">
+    <div class="card">
+        <h1>Registro de Filme</h1>
 
         <!-- Mensagens de erro ou sucesso -->
         <div th:if="${errorMessage}" class="error-message">
@@ -19,35 +22,33 @@
             <p th:text="${successMessage}"></p>
         </div>
 
+        <!-- Formulário -->
         <form th:action="@{/filmes}" th:object="${filmeobj}" method="post">
-            <!-- Título do Filme -->
             <div class="input-group">
                 <label for="titulo">Título do Filme</label>
                 <input type="text" id="titulo" th:field="*{titulo}" placeholder="Informe o título do filme" required>
             </div>
-            <!-- Data Assistida -->
             <div class="input-group">
                 <label for="dataAssistido">Data que foi assistido</label>
                 <input type="date" id="dataAssistido" th:field="*{dataAssistido}" required>
             </div>
-            <!-- Opinião -->
             <div class="input-group">
                 <label for="opiniao">Opinião</label>
                 <input type="text" id="opiniao" th:field="*{opiniao}" placeholder="Compartilhe sua opinião" required>
             </div>
-            <!-- Estrelas -->
             <div class="input-group">
                 <label for="estrelas">Estrelas (1-5)</label>
                 <input type="number" id="estrelas" th:field="*{estrelas}" placeholder="Avalie com estrelas" min="1" max="5" required>
             </div>
-            <!-- Botão -->
-            <button type="submit" class="btn">Cadastrar Filme</button>
+            <div class="buttons-group">
+                <button type="submit" class="btn">Cadastrar Filme</button>
+                <a th:href="@{/filmes}" class="btn secondary">Voltar para a lista de filmes</a>
+            </div>
         </form>
-
-        <div class="login-footer">
-            <p><a th:href="@{/filmes}">Voltar para a lista de filmes</a></p>
-        </div>
     </div>
-</div>
+</main>
+
+<!-- Importando o rodapé -->
+<div th:insert="fragments/footer :: footer"></div>
 </body>
 </html>
