@@ -1,142 +1,50 @@
-/* Reset básico */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
 
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f8f9fa;
-    color: #333;
-    line-height: 1.6;
+    margin: 0;
+    font-family: 'Cinzel', serif;
+    background: linear-gradient(135deg, #1c1c1c, #4a4a4a);
+    color: #eaeaea;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
 }
 
-/* Navbar */
-header {
-    background-color: #6a11cb;
-    color: #fff;
-    padding: 15px 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.user-info span {
-    font-size: 1.2rem;
-    font-weight: bold;
-}
-
-.btn-logout {
-    background-color: #ff4d4d;
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 25px;
-    transition: background-color 0.3s ease;
-    font-size: 0.9rem;
-}
-
-.btn-logout:hover {
-    background-color: #cc0000;
-}
-
-/* Main Content */
 main {
     flex: 1;
-    padding: 30px 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+    padding: 20px;
     text-align: center;
 }
 
 .intro h1 {
     font-size: 2.5rem;
-    color: #333;
-    margin-bottom: 15px;
+    margin-bottom: 1rem;
+    color: #fff;
 }
 
 .intro p {
-    font-size: 1.1rem;
-    color: #666;
-    margin-bottom: 30px;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #ddd;
 }
 
-/* Action Buttons */
 .actions {
     display: flex;
     justify-content: center;
     gap: 20px;
-    flex-wrap: wrap;
 }
 
 .actions .btn {
-    background: linear-gradient(45deg, #6a11cb, #2575fc);
-    color: #fff;
-    text-decoration: none;
-    padding: 15px 25px;
-    border-radius: 30px;
+    padding: 10px 20px;
     font-size: 1rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, background 0.3s ease;
+    color: #fff;
+    background: #555;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s;
 }
 
 .actions .btn:hover {
-    transform: translateY(-3px);
-    background: linear-gradient(45deg, #2575fc, #6a11cb);
+    background: #6a6a6a;
 }
 
-/* Footer */
-footer {
-    background-color: #6a11cb;
-    color: #fff;
-    text-align: center;
-    padding: 15px 0;
-    font-size: 0.9rem;
-    margin-top: auto;
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .actions .btn {
-        padding: 12px 20px;
-        font-size: 0.9rem;
-    }
-
-    .intro h1 {
-        font-size: 2rem;
-    }
-
-    .intro p {
-        font-size: 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .btn {
-        padding: 10px 15px;
-        font-size: 0.85rem;
-    }
-
-    .intro h1 {
-        font-size: 1.8rem;
-    }
-
-    .intro p {
-        font-size: 0.9rem;
-    }
-}

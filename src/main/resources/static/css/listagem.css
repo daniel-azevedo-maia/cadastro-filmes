@@ -1,281 +1,235 @@
-/* listagem.css */
-
-/* Reset básico */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
 
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f8f9fa;
-    color: #333;
-    line-height: 1.6;
+    margin: 0;
+    font-family: 'Cinzel', serif;
+    background: linear-gradient(135deg, #1c1c1c, #4a4a4a);
+    color: #eaeaea;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Garante o footer no final */
+    min-height: 100vh;
 }
 
-/* Navbar */
-header {
-    background-color: #6a11cb;
-    color: #fff;
-    padding: 10px 20px; /* Estilo fino */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.user-info span {
-    font-size: 1.2rem;
-    font-weight: bold;
-}
-
-.btn-logout {
-    background: linear-gradient(45deg, #ff7e5f, #feb47b);
-    color: #fff;
-    padding: 8px 15px;
-    border-radius: 25px;
-    font-size: 0.9rem;
-    text-decoration: none;
-    transition: transform 0.3s ease, background 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.btn-logout:hover {
-    background: linear-gradient(45deg, #feb47b, #ff7e5f);
-    transform: translateY(-3px);
-}
-
-/* Container principal */
-.container {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 20px;
+main {
     flex: 1;
-    text-align: center;
-}
-
-/* Card */
-.card {
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    margin: 20px auto;
     text-align: center;
 }
 
-.card h1 {
-    font-size: 2.5rem;
-    color: #6a11cb;
-    margin-bottom: 20px;
+.card {
+    background: #3a3a3a;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    padding: 30px;
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+    margin: 20px auto;
 }
 
-/* Mensagens de erro e lista vazia */
-.error-message, .empty-message {
-    font-size: 1rem;
-    color: #d72638;
-    margin-bottom: 20px;
+h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #eaeaea;
 }
 
-/* Tabela */
+.error-message, .success-message {
+    padding: 10px;
+    margin-bottom: 1.5rem;
+    border-radius: 5px;
+    font-family: 'Cinzel', serif;
+}
+
+.error-message {
+    background: #ff4d4d;
+    color: #ffffff;
+}
+
+.success-message {
+    background: #4caf50;
+    color: #ffffff;
+}
+
 .film-table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 20px;
-    font-size: 1rem;
-    text-align: left;
+    margin-bottom: 2rem;
 }
 
 .film-table th, .film-table td {
-    padding: 12px 15px;
-    border: 1px solid #ddd;
+    padding: 12px;
+    border: 1px solid #444;
+    text-align: left;
+    font-family: 'Cinzel', serif;
 }
 
 .film-table th {
-    background: #6a11cb;
-    color: #fff;
-    text-transform: uppercase;
-    font-weight: bold;
+    background-color: #555;
+    color: #eaeaea;
 }
 
 .film-table td {
-    background: #fff;
-    color: #333;
+    background-color: #3a3a3a;
+    color: #eaeaea;
 }
 
-/* Botões */
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 0.9rem;
+.film-table td button {
+    margin: 5px;
+}
+
+.btn-edit, .btn-delete {
+    padding: 8px 12px;
+    font-size: 1rem;
     color: #fff;
-    background: linear-gradient(45deg, #6a11cb, #2575fc);
+    background: #555;
     border: none;
-    border-radius: 30px;
-    text-decoration: none;
+    border-radius: 5px;
     cursor: pointer;
-    transition: transform 0.3s ease, background 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s;
+    font-family: 'Cinzel', serif;
 }
 
-.btn:hover {
-    transform: translateY(-3px);
-    background: linear-gradient(45deg, #2575fc, #6a11cb);
+.btn-edit:hover, .btn-delete:hover {
+    background: #6a6a6a;
 }
 
-.btn-edit {
-    background: linear-gradient(45deg, #6a11cb, #2575fc);
-    color: #fff;
-    border: 1px solid #6a11cb;
-    padding: 5px 10px;
-    border-radius: 5px;
-    transition: background 0.3s ease;
-}
-
-.btn-delete {
-    background: #d72638;
-    color: #fff;
-    border: 1px solid #d72638;
-    padding: 5px 10px;
-    border-radius: 5px;
-    transition: background 0.3s ease;
-}
-
-.btn-edit:hover {
-    background: #2575fc;
-}
-
-.btn-delete:hover {
-    background: #ff4d4d;
-}
-
-/* Footer */
-footer {
-    background-color: #6a11cb;
-    color: #fff;
+.footer-actions {
+    margin-top: 2rem;
     text-align: center;
-    padding: 15px 0;
-    font-size: 0.9rem;
-    margin-top: auto; /* Garante que o footer fique no final */
 }
 
-/* Modal */
+.footer-actions .btn {
+    width: 180px;
+    padding: 10px;
+    font-size: 1rem;
+    color: #fff;
+    background: #555;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.footer-actions .btn:hover {
+    background: #6a6a6a;
+}
+
 .modal {
-    display: none; /* Escondido por padrão */
+    display: none;
     position: fixed;
-    z-index: 1000;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Fundo escuro translúcido */
+    background-color: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
 }
 
-/* Conteúdo do Modal */
 .modal-content {
-    background: #fff;
-    border-radius: 10px;
-    padding: 20px 30px;
-    width: 90%;
+    background: #3a3a3a;
+    padding: 30px;
+    border-radius: 15px;
     max-width: 500px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    animation: fadeIn 0.3s ease-in-out;
+    width: 90%;
+    text-align: center;
+    font-family: 'Cinzel', serif;
 }
 
 .close {
-    color: #444;
-    float: right;
+    color: #eaeaea;
     font-size: 1.5rem;
-    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
     cursor: pointer;
 }
 
-.close:hover {
-    color: #d72638;
-}
-
-/* Inputs */
 .input-group {
-    margin-bottom: 15px;
+    margin-bottom: 1.5rem;
     text-align: left;
 }
 
 .input-group label {
     display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #333;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+    font-size: 1rem;
 }
 
 .input-group input {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
     font-size: 1rem;
+    border: 1px solid #444;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s, background-color 0.3s;
+    background: #1c1c1c;
+    color: #ffffff;
+    font-family: 'Cinzel', serif;
+}
+
+.input-group input::placeholder {
+    color: #ffffff;
+    font-family: 'Cinzel', serif;
 }
 
 .input-group input:focus {
-    border-color: #6a11cb;
-    outline: none;
-    box-shadow: 0 0 5px rgba(106, 17, 203, 0.3);
+    border-color: #8e8e8e;
+    background: #262626;
 }
 
-/* Animação */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+.buttons-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
 }
 
-/* Responsividade */
+.btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background: #555;
+    text-decoration: none;
+    border: none; /* Remover borda */
+    border-radius: 5px;
+    transition: background 0.3s;
+    font-family: 'Cinzel', serif;
+}
+
+.btn:hover {
+    background: #6a6a6a;
+}
+
+.secondary {
+    background: #777;
+}
+
+.secondary:hover {
+    background: #888;
+}
+
+.footer-actions {
+    margin-top: 2rem;
+    text-align: center;
+}
+
 @media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        text-align: center;
+    .card {
+        padding: 20px;
     }
 
-    .card h1 {
-        font-size: 2rem;
+    h1 {
+        font-size: 1.5rem;
     }
 
-    .film-table th, .film-table td {
+    .btn, .secondary {
         font-size: 0.9rem;
+        width: 100%;  /* Faz os botões ocuparem 100% da largura disponível */
     }
 
-    .btn {
-        padding: 8px 15px;
-        font-size: 0.85rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .btn {
-        padding: 6px 10px;
-        font-size: 0.8rem;
-    }
-
-    .card h1 {
-        font-size: 1.8rem;
-    }
-
-    .film-table th, .film-table td {
-        font-size: 0.8rem;
+    .buttons-group {
+        flex-direction: column;
     }
 }

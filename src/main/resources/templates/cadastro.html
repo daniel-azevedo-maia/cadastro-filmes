@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tela de Cadastro</title>
     <link rel="stylesheet" href="/css/cadastro.css">
+    <link rel="stylesheet" href="/css/header.css">
 </head>
 <body>
+<!-- Incluindo o header -->
+<div th:insert="fragments/header :: header"></div>
+
 <div class="login-container">
     <div class="login-card">
         <h1>Cadastro</h1>
@@ -55,7 +59,7 @@
         </form>
 
         <div class="login-footer">
-            <p>Já tem uma conta? <a th:href="@{/auth/login}">Faça login</a></p>
+            <p>Já tem uma conta? <a th:href="@{/auth/login}">Faça login ou clique para voltar</a></p>
         </div>
     </div>
 </div>

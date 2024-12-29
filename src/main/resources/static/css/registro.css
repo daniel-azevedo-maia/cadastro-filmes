@@ -1,192 +1,140 @@
-/* registro.css */
-
-/* Reset básico */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
 
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f8f9fa;
-    color: #333;
-    line-height: 1.6;
+    margin: 0;
+    font-family: 'Cinzel', serif;
+    background: linear-gradient(135deg, #1c1c1c, #4a4a4a);
+    color: #eaeaea;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Garante que o footer fique ao final */
+    min-height: 100vh;
 }
 
-/* Header */
-header {
-    background-color: #6a11cb;
-    color: #fff;
-    padding: 10px 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.navbar .user-info span {
-    font-size: 1.2rem;
-    font-weight: bold;
-}
-
-.navbar .btn-logout {
-    background: linear-gradient(45deg, #ff7e5f, #feb47b);
-    color: #fff;
-    padding: 8px 15px;
-    border-radius: 25px;
-    font-size: 0.9rem;
-    text-decoration: none;
-    transition: background 0.3s ease, transform 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.navbar .btn-logout:hover {
-    background: linear-gradient(45deg, #feb47b, #ff7e5f);
-    transform: translateY(-3px);
-}
-
-/* Container */
-.container {
-    flex: 1; /* Faz o container ocupar todo o espaço disponível */
-    max-width: 800px;
-    margin: 40px auto;
+main {
+    flex: 1;
     padding: 20px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
-/* Card */
-.card h1 {
-    font-size: 2.5rem;
-    color: #6a11cb;
-    margin-bottom: 20px;
+.card {
+    background: #3a3a3a;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    padding: 30px;
+    max-width: 800px;
+    width: 100%;
     text-align: center;
+    margin: 20px auto;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #eaeaea;
 }
 
 .error-message, .success-message {
-    font-size: 1rem;
-    margin-bottom: 20px;
-    text-align: center;
+    padding: 10px;
+    margin-bottom: 1.5rem;
+    border-radius: 5px;
+    font-family: 'Cinzel', serif;
 }
 
 .error-message {
-    color: #d72638;
+    background: #ff4d4d;
+    color: #ffffff;
 }
 
 .success-message {
-    color: #28a745;
+    background: #4caf50;
+    color: #ffffff;
 }
 
-/* Input Groups */
 .input-group {
-    margin-bottom: 15px;
+    margin-bottom: 1.5rem;
     text-align: left;
 }
 
 .input-group label {
     display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #333;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+    font-size: 1rem;
 }
 
 .input-group input {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
     font-size: 1rem;
+    border: 1px solid #444;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s, background-color 0.3s;
+    background: #1c1c1c;
+    color: #ffffff;
+    font-family: 'Cinzel', serif; /* Adicionado a fonte para os inputs */
+}
+
+.input-group input::placeholder {
+    color: #ffffff;
+    font-family: 'Cinzel', serif; /* Adicionado a fonte para o placeholder */
 }
 
 .input-group input:focus {
-    border-color: #6a11cb;
-    outline: none;
-    box-shadow: 0 0 5px rgba(106, 17, 203, 0.3);
+    border-color: #8e8e8e;
+    background: #262626;
 }
 
-/* Botões */
 .buttons-group {
     display: flex;
-    justify-content: center;
-    gap: 20px; /* Espaçamento entre os botões */
-    margin-top: 20px;
+    justify-content: space-between;
+    gap: 20px;
 }
 
 .btn {
-    display: inline-block;
     padding: 10px 20px;
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: #fff;
-    background: linear-gradient(45deg, #6a11cb, #2575fc);
-    border: none;
-    border-radius: 30px;
+    background: #555;
     text-decoration: none;
-    cursor: pointer;
-    transition: transform 0.3s ease, background 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.btn.secondary {
-    background: linear-gradient(45deg, #ff7e5f, #feb47b);
+    border: none; /* Remover a borda */
+    border-radius: 5px;
+    transition: background 0.3s;
+    font-family: 'Cinzel', serif; /* Adicionado a fonte para o botão */
 }
 
 .btn:hover {
-    transform: translateY(-3px);
-    background: linear-gradient(45deg, #2575fc, #6a11cb);
+    background: #6a6a6a;
 }
 
-.btn.secondary:hover {
-    background: linear-gradient(45deg, #feb47b, #ff7e5f);
+.secondary {
+    background: #777;
 }
 
-/* Footer */
-footer {
-    background-color: #6a11cb;
-    color: #fff;
+.secondary:hover {
+    background: #888;
+}
+
+.footer-actions {
+    margin-top: 2rem;
     text-align: center;
-    padding: 15px 0;
-    font-size: 0.9rem;
-    margin-top: auto; /* Garante que o footer fique ao final */
 }
 
-/* Responsividade */
 @media (max-width: 768px) {
-    .card h1 {
-        font-size: 2rem;
+    .card {
+        padding: 20px;
     }
 
-    .btn {
-        padding: 8px 15px;
-        font-size: 0.85rem;
+    h1 {
+        font-size: 1.5rem;
     }
 
-    .input-group input {
+    .btn, .secondary {
         font-size: 0.9rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .btn {
-        padding: 6px 10px;
-        font-size: 0.8rem;
+        width: 100%;  /* Faz os botões ocuparem 100% da largura disponível */
     }
 
-    .card h1 {
-        font-size: 1.8rem;
-    }
-
-    .input-group input {
-        font-size: 0.8rem;
+    .buttons-group {
+        flex-direction: column;
     }
 }
