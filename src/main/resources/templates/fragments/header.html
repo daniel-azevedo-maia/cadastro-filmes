@@ -4,7 +4,10 @@
             <span th:text="'Olá, ' + ${nome} + '!'"></span>
         </div>
         <div class="nav-actions">
-            <a th:href="@{/logout}" class="btn btn-logout">Logout</a>
+            <form th:action="@{/logout}" method="POST" style="display: inline;">
+                <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+                <button type="submit" class="btn btn-logout" aria-label="Logout">Logout</button>
+            </form>
         </div>
     </nav>
 </header>

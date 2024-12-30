@@ -18,24 +18,25 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(csrf -> csrf.disable())
-            .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/auth/**", "/css/**", "/js/**").permitAll()
-
-                .anyRequest().authenticated()
-            )
-            .formLogin(form -> form
-                .loginPage("/auth/login")
-                .defaultSuccessUrl("/home", true)
-                .failureUrl("/auth/login?error=true")
-                .permitAll()
-            )
-            .logout(logout -> logout
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/auth/login")
-                .permitAll()
-            );
-
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/auth/**", "/css/**", "/js/**", "/public/**").permitAll()  // Permitir acesso sem autenticação
+                        .anyRequest().authenticated() // Exigir autenticação para outras requisições
+                )
+                .formLogin(form -> form
+                        .loginPage("/auth/login")  // Página de login personalizada
+                        .defaultSuccessUrl("/home", true)  // Redireciona para /home após login bem-sucedido
+                        .failureUrl("/auth/login?error=true")  // Página de erro de login
+                        .permitAll()  // Permite acesso à página de login sem autenticação
+                )
+                // Configuração do logout
+                .logout(logout -> logout
+                        .logoutSuccessUrl("/auth/login?logout=true")  // Redireciona para a página de login após o logout
+                        .clearAuthentication(true)  // Limpa a autenticação
+                        .invalidateHttpSession(true)  // Invalida a sessão do usuário
+                        .permitAll()  // Permite acesso ao logout sem autenticação
+                )
+                // Habilitando CSRF
+                .csrf(csrf -> csrf.ignoringRequestMatchers("/auth/**"));  // Ignorar CSRF apenas para login
         return http.build();
     }
 }

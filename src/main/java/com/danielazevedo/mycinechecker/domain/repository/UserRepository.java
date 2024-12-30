@@ -1,6 +1,5 @@
 package com.danielazevedo.mycinechecker.domain.repository;
 
-import com.danielazevedo.mycinechecker.domain.model.Role;
 import com.danielazevedo.mycinechecker.domain.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
