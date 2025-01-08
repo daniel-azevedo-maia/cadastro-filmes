@@ -1,35 +1,30 @@
-# Definição dos serviços que serão criados
+networks:
+  my-cine-checker-network:
+    driver: bridge
+
 services:
-  postgres:
-    # Imagem oficial do PostgreSQL que será utilizada
-    image: postgres:15
-
-    # Nome do container (facilita identificar o container criado)
-    container_name: postgres-container
-
-    # Configura o container para reiniciar automaticamente se falhar
-    restart: always
-
-    # Variáveis de ambiente usadas pelo PostgreSQL
+  my-cine-checker-postgres:
+    image: postgres
     environment:
-      # Nome do usuário administrador do banco de dados
-      POSTGRES_USER: postgres
-
-      # Senha para o usuário especificado acima
-      POSTGRES_PASSWORD: admin
-
-      # Nome do banco de dados que será automaticamente criado
-      POSTGRES_DB: mycinechecker
-
-    # Porta mapeada: conecta o container à porta 5432 no host (seu computador)
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "root"
+      POSTGRES_DB: "my-cine-checker-db"
     ports:
-      - "5433:5432"
+      - "5432:5432"
+    networks:
+      - my-cine-checker-network
 
-    # Volume para persistir os dados do banco, mesmo que o container seja parado
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
-# Configuração de volumes para persistência
-volumes:
-  postgres_data:
-    # Armazena os dados localmente em um volume nomeado (evita perda de dados ao recriar o container)
+  my-cine-checker-api:
+    build: .
+    image: my-cine-checker-api
+    command: [ "/wait-for-it.sh", "my-cine-checker-postgres:5432", "-t", "30", "--", "java","-jar", "/app.jar" ]
+    environment:
+      DB_HOST: "my-cine-checker-postgres"
+      DB_USERNAME: "postgres"
+      DB_PASSWORD: "root"
+    ports:
+      - "8080:8080"
+    networks:
+      - my-cine-checker-network
+    depends_on:
+      - my-cine-checker-postgres
