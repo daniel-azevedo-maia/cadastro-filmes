@@ -17,27 +17,29 @@ main {
 }
 
 .card {
-    background: #3a3a3a;
+    background: #2d2d2d;
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     padding: 30px;
-    max-width: 800px;
-    width: 100%;
+    max-width: 700px;
+    width: 90%;
     text-align: center;
     margin: 20px auto;
 }
 
 h1 {
-    font-size: 2rem;
+    font-size: 2.2rem;
     margin-bottom: 1.5rem;
-    color: #eaeaea;
+    color: #fff;
+    font-weight: bold;
 }
 
 .error-message, .success-message {
-    padding: 10px;
+    padding: 12px;
     margin-bottom: 1.5rem;
-    border-radius: 5px;
+    border-radius: 8px;
     font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
 }
 
 .error-message {
@@ -54,18 +56,18 @@ h1 {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 2rem;
+    font-size: 1rem;
 }
 
 .film-table th, .film-table td {
     padding: 12px;
     border: 1px solid #444;
     text-align: left;
-    font-family: 'Cinzel', serif;
 }
 
 .film-table th {
     background-color: #555;
-    color: #eaeaea;
+    color: #fff;
 }
 
 .film-table td {
@@ -83,14 +85,14 @@ h1 {
     color: #fff;
     background: #555;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background 0.3s;
-    font-family: 'Cinzel', serif;
+    transition: background 0.3s, transform 0.2s;
 }
 
 .btn-edit:hover, .btn-delete:hover {
     background: #6a6a6a;
+    transform: scale(1.05);
 }
 
 .footer-actions {
@@ -99,19 +101,21 @@ h1 {
 }
 
 .footer-actions .btn {
-    width: 180px;
-    padding: 10px;
+    width: 200px;
+    padding: 12px;
     font-size: 1rem;
     color: #fff;
     background: #555;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background 0.3s, transform 0.2s;
+    font-weight: bold;
 }
 
 .footer-actions .btn:hover {
     background: #6a6a6a;
+    transform: scale(1.05);
 }
 
 .modal {
@@ -127,22 +131,26 @@ h1 {
 }
 
 .modal-content {
-    background: #3a3a3a;
+    background: #2d2d2d;
     padding: 30px;
     border-radius: 15px;
     max-width: 500px;
     width: 90%;
     text-align: center;
-    font-family: 'Cinzel', serif;
 }
 
 .close {
-    color: #eaeaea;
+    color: #fff;
     font-size: 1.5rem;
     position: absolute;
     top: 10px;
     right: 20px;
     cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close:hover {
+    color: #d4d4d4;
 }
 
 .input-group {
@@ -155,51 +163,52 @@ h1 {
     margin-bottom: 0.5rem;
     color: #ffffff;
     font-size: 1rem;
+    font-weight: bold;
 }
 
 .input-group input {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     font-size: 1rem;
     border: 1px solid #444;
-    border-radius: 5px;
+    border-radius: 8px;
     outline: none;
-    transition: border-color 0.3s, background-color 0.3s;
+    transition: border-color 0.3s, box-shadow 0.3s;
     background: #1c1c1c;
     color: #ffffff;
-    font-family: 'Cinzel', serif;
 }
 
 .input-group input::placeholder {
-    color: #ffffff;
-    font-family: 'Cinzel', serif;
+    color: #aaa;
 }
 
 .input-group input:focus {
-    border-color: #8e8e8e;
-    background: #262626;
+    border-color: #6a6a6a;
+    box-shadow: 0 0 8px rgba(106, 106, 106, 0.8);
 }
 
 .buttons-group {
     display: flex;
     justify-content: space-between;
     gap: 20px;
+    flex-wrap: wrap; /* Quebra os botões em linha caso não caibam */
 }
 
 .btn {
-    padding: 10px 20px;
+    padding: 12px 20px;
     font-size: 1rem;
     color: #fff;
     background: #555;
     text-decoration: none;
-    border: none; /* Remover borda */
-    border-radius: 5px;
-    transition: background 0.3s;
-    font-family: 'Cinzel', serif;
+    border: none;
+    border-radius: 8px;
+    transition: background 0.3s, transform 0.2s;
+    font-weight: bold;
 }
 
 .btn:hover {
     background: #6a6a6a;
+    transform: scale(1.05);
 }
 
 .secondary {
@@ -210,26 +219,73 @@ h1 {
     background: #888;
 }
 
-.footer-actions {
-    margin-top: 2rem;
-    text-align: center;
-}
-
 @media (max-width: 768px) {
     .card {
         padding: 20px;
+        max-width: 90%;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .film-table {
+        font-size: 0.9rem;
+    }
+
+    .film-table th, .film-table td {
+        padding: 8px;
+    }
+
+    .buttons-group {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .btn, .secondary {
+        font-size: 0.9rem;
+        width: 100%;
+    }
+
+    .modal-content {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        padding: 15px;
     }
 
     h1 {
         font-size: 1.5rem;
     }
 
-    .btn, .secondary {
-        font-size: 0.9rem;
-        width: 100%;  /* Faz os botões ocuparem 100% da largura disponível */
+    .film-table {
+        font-size: 0.8rem;
     }
 
-    .buttons-group {
-        flex-direction: column;
+    .film-table th, .film-table td {
+        padding: 6px;
     }
+
+    .btn, .secondary {
+        font-size: 0.8rem;
+        padding: 10px;
+    }
+
+    .modal-content {
+        padding: 15px;
+    }
+
+    .close {
+        font-size: 1.2rem;
+    }
+}
+
+/* Garantir que os inputs e botões não excedam o espaço disponível */
+.input-group input,
+.btn {
+    max-width: 100%;
+    box-sizing: border-box;
 }

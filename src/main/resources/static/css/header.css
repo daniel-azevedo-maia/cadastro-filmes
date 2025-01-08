@@ -33,3 +33,50 @@ header {
     background: #6a6a6a; /* Fundo mais claro no hover */
     color: #fff; /* Cor do texto permanece branca */
 }
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column; /* Empilhar os itens em telas menores */
+        align-items: flex-start; /* Alinha itens à esquerda */
+        padding: 10px;
+    }
+
+    .user-info {
+        font-size: 0.9rem; /* Reduz tamanho da fonte */
+        margin-bottom: 10px; /* Espaçamento entre os elementos */
+    }
+
+    .nav-actions .btn-logout {
+        font-size: 0.9rem; /* Reduz tamanho do botão */
+        padding: 6px 12px; /* Ajusta o preenchimento do botão */
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 10px; /* Ajusta o padding para telas muito pequenas */
+    }
+
+    .user-info {
+        font-size: 0.8rem;
+        margin-bottom: 5px;
+    }
+
+    .nav-actions .btn-logout {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+    }
+}
+
+/* Garantir que os inputs não excedam o espaço disponível */
+.input-group input {
+    max-width: 100%; /* Limita a largura dos inputs ao tamanho do container */
+    box-sizing: border-box; /* Inclui padding e borda dentro da largura total */
+}
+
+/* Ajuste adicional para telas maiores, incluindo dispositivos modernos */
+@media (min-width: 1024px) {
+    .card {
+        max-width: 600px; /* Restringe a largura do cartão para dispositivos grandes */
+    }
+}

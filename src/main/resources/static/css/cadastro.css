@@ -5,50 +5,54 @@ body {
     font-family: 'Cinzel', serif;
     background: linear-gradient(135deg, #1c1c1c, #4a4a4a);
     color: #eaeaea;
-    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .login-container {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
 }
 
 .login-card {
-    background: #3a3a3a;
+    background: #2d2d2d;
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     padding: 30px;
-    max-width: 400px;
-    width: 90%;
+    max-width: 450px;
+    width: 100%;
+    box-sizing: border-box;
     text-align: center;
-    font-family: 'Cinzel', serif;
 }
 
 h1 {
     font-size: 2rem;
     margin-bottom: 1.5rem;
     color: #fff;
+    font-weight: bold;
+}
+
+.error-message, .success-message {
+    padding: 12px;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
 }
 
 .error-message {
     background: #ff4d4d;
     color: #ffffff;
-    padding: 10px;
-    margin-bottom: 1rem;
-    border-radius: 5px;
 }
 
 .success-message {
     background: #4caf50;
     color: #ffffff;
-    padding: 10px;
-    margin-bottom: 1rem;
-    border-radius: 5px;
 }
 
 .input-group {
@@ -61,49 +65,53 @@ h1 {
     margin-bottom: 0.5rem;
     color: #ffffff;
     font-size: 1rem;
+    font-weight: bold;
 }
 
 .input-group input {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     font-size: 1rem;
     border: 1px solid #444;
-    border-radius: 5px;
+    border-radius: 8px;
     outline: none;
-    transition: border-color 0.3s, background-color 0.3s;
+    transition: border-color 0.3s, box-shadow 0.3s;
     background: #1c1c1c;
     color: #ffffff;
+    box-sizing: border-box;
 }
 
 .input-group input::placeholder {
-    color: #ffffff;
+    color: #aaa;
 }
 
 .input-group input:focus {
-    border-color: #8e8e8e;
-    background: #262626;
+    border-color: #6a6a6a;
+    box-shadow: 0 0 8px rgba(106, 106, 106, 0.8);
 }
 
 .btn {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     font-size: 1rem;
     color: #fff;
     background: #555;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background 0.3s, transform 0.2s;
+    font-weight: bold;
 }
 
 .btn:hover {
     background: #6a6a6a;
+    transform: scale(1.02);
 }
 
 .login-footer {
     margin-top: 1rem;
     font-size: 0.9rem;
-    text-align: center;
+    color: #ffffff;
 }
 
 .login-footer a {
@@ -117,9 +125,40 @@ h1 {
     color: #d4d4d4;
 }
 
+/* Responsividade */
 @media (max-width: 768px) {
     .login-card {
         padding: 20px;
+        max-width: 95%;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
+    .input-group label {
+        font-size: 0.9rem;
+    }
+
+    .input-group input {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
+    .login-footer {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-card {
+        padding: 15px;
+        max-width: 100%;
     }
 
     h1 {
@@ -127,6 +166,20 @@ h1 {
     }
 
     .btn {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+
+    .input-group label {
+        font-size: 0.8rem;
+    }
+
+    .input-group input {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+
+    .login-footer {
+        font-size: 0.7rem;
     }
 }

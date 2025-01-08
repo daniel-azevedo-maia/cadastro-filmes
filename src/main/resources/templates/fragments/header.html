@@ -1,10 +1,10 @@
-<header>
+<header xmlns:th="http://www.w3.org/1999/xhtml">
     <nav class="navbar">
         <div class="user-info">
             <span th:text="'Olá, ' + ${nome} + '!'"></span>
         </div>
         <div class="nav-actions">
-            <a th:href="@{/logout}" class="btn btn-logout">Logout</a>
+            <a th:href="@{/logout}" class="btn btn-logout">Sair</a>
         </div>
     </nav>
 </header>

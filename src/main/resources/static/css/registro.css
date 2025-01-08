@@ -123,18 +123,72 @@ h1 {
 @media (max-width: 768px) {
     .card {
         padding: 20px;
+        max-width: 90%; /* Ajusta a largura do cartão */
     }
 
     h1 {
-        font-size: 1.5rem;
+        font-size: 1.5rem; /* Reduz tamanho do título */
     }
 
     .btn, .secondary {
-        font-size: 0.9rem;
-        width: 100%;  /* Faz os botões ocuparem 100% da largura disponível */
+        font-size: 0.9rem; /* Ajusta tamanho dos botões */
+        width: 100%; /* Botões ocupam 100% da largura */
+        padding: 8px; /* Ajusta o padding dos botões */
     }
 
     .buttons-group {
-        flex-direction: column;
+        flex-direction: column; /* Empilha os botões verticalmente */
+        gap: 15px; /* Reduz o espaçamento entre botões */
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px; /* Adiciona espaçamento nas laterais */
+    }
+
+    .card {
+        padding: 15px; /* Reduz padding do cartão */
+    }
+
+    h1 {
+        font-size: 1.2rem; /* Reduz ainda mais o tamanho do título */
+        margin-bottom: 1rem; /* Reduz espaçamento inferior */
+    }
+
+    .input-group label {
+        font-size: 0.9rem; /* Ajusta tamanho da fonte do rótulo */
+    }
+
+    .input-group input {
+        font-size: 0.9rem; /* Ajusta tamanho da fonte dos inputs */
+        padding: 8px; /* Reduz padding dos inputs */
+    }
+
+    .btn, .secondary {
+        font-size: 0.8rem; /* Fonte menor para botões */
+        padding: 6px; /* Reduz padding dos botões */
+    }
+
+    .buttons-group {
+        gap: 10px; /* Reduz ainda mais o espaçamento entre botões */
+    }
+
+    .footer-actions {
+        margin-top: 1.5rem; /* Ajusta o espaçamento do rodapé */
+        font-size: 0.8rem; /* Reduz tamanho da fonte no rodapé */
+    }
+}
+
+/* Garantir que os inputs não excedam o espaço disponível */
+.input-group input {
+    max-width: 100%; /* Limita a largura dos inputs ao tamanho do container */
+    box-sizing: border-box; /* Inclui padding e borda dentro da largura total */
+}
+
+/* Ajuste adicional para telas maiores, incluindo dispositivos modernos */
+@media (min-width: 1024px) {
+    .card {
+        max-width: 600px; /* Restringe a largura do cartão para dispositivos grandes */
     }
 }

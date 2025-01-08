@@ -20,6 +20,7 @@ main {
     font-size: 2.5rem;
     margin-bottom: 1rem;
     color: #fff;
+    font-weight: bold;
 }
 
 .intro p {
@@ -32,19 +33,79 @@ main {
     display: flex;
     justify-content: center;
     gap: 20px;
+    flex-wrap: wrap; /* Permite que os botões quebrem linha se necessário */
 }
 
 .actions .btn {
-    padding: 10px 20px;
+    padding: 12px 24px;
     font-size: 1rem;
     color: #fff;
     background: #555;
     text-decoration: none;
-    border-radius: 5px;
-    transition: background 0.3s;
+    border-radius: 8px;
+    border: 1px solid #444;
+    transition: background 0.3s, transform 0.2s;
+    font-weight: bold;
 }
 
 .actions .btn:hover {
     background: #6a6a6a;
+    transform: scale(1.05); /* Leve aumento no hover */
+    border-color: #6a6a6a;
 }
 
+@media (max-width: 768px) {
+    main {
+        padding: 15px;
+    }
+
+    .intro h1 {
+        font-size: 2rem;
+    }
+
+    .intro p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .actions {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .actions .btn {
+        font-size: 0.9rem;
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    main {
+        padding: 10px;
+    }
+
+    .intro h1 {
+        font-size: 1.5rem;
+    }
+
+    .intro p {
+        font-size: 0.9rem;
+    }
+
+    .actions .btn {
+        font-size: 0.8rem;
+        padding: 8px 16px;
+    }
+}
+
+/* Garantir responsividade de elementos */
+.actions .btn {
+    max-width: 100%; /* Botões nunca ultrapassam o tamanho do container */
+    box-sizing: border-box; /* Inclui bordas e padding na largura */
+}
+
+@media (min-width: 1024px) {
+    .card {
+        max-width: 600px;
+    }
+}

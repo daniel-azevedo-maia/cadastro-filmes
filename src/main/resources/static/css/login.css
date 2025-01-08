@@ -16,33 +16,34 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
-    font-family: 'Cinzel', serif;
 }
 
 .login-card {
-    background: #3a3a3a;
+    background: #2d2d2d;
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     padding: 30px;
-    max-width: 400px;
+    max-width: 420px;
     width: 90%;
     text-align: center;
     font-family: 'Cinzel', serif;
 }
 
 h1 {
-    font-size: 2rem;
+    font-size: 2.2rem;
     margin-bottom: 1.5rem;
-    color: #eaeaea;
+    color: #fff;
     font-family: 'Cinzel', serif;
+    font-weight: bold;
 }
 
 .error-message {
     background: #ff4d4d;
     color: #ffffff;
-    padding: 10px;
-    margin-bottom: 1.5rem;
-    border-radius: 5px;
+    padding: 12px;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
     font-family: 'Cinzel', serif;
 }
 
@@ -57,45 +58,51 @@ h1 {
     margin-bottom: 0.5rem;
     color: #ffffff;
     font-size: 1rem;
+    font-weight: bold;
+    font-family: 'Cinzel', serif;
 }
 
 .input-group input {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     font-size: 1rem;
     border: 1px solid #444;
-    border-radius: 5px;
+    border-radius: 8px;
     outline: none;
-    transition: border-color 0.3s, background-color 0.3s;
-    font-family: 'Cinzel', serif;
+    transition: border-color 0.3s, box-shadow 0.3s;
     background: #1c1c1c;
     color: #ffffff;
+    box-sizing: border-box;
+    font-family: 'Cinzel', serif;
 }
 
 .input-group input::placeholder {
-    color: #ffffff;
+    color: #aaa;
+    font-family: 'Cinzel', serif;
 }
 
 .input-group input:focus {
-    border-color: #8e8e8e;
-    background: #262626;
+    border-color: #6a6a6a;
+    box-shadow: 0 0 8px rgba(106, 106, 106, 0.8);
 }
 
 .btn {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     font-size: 1rem;
     color: #fff;
     background: #555;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background 0.3s, transform 0.2s;
     font-family: 'Cinzel', serif;
+    font-weight: bold;
 }
 
 .btn:hover {
     background: #6a6a6a;
+    transform: scale(1.02);
 }
 
 .login-footer {
@@ -137,23 +144,73 @@ h1 {
     margin: 0 10px;
     font-weight: bold;
     transition: color 0.3s;
+    font-family: 'Cinzel', serif;
 }
 
 .footer a:hover {
     color: #d4d4d4;
 }
 
-
 @media (max-width: 768px) {
     .login-card {
         padding: 20px;
+        max-width: 90%;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
+    .login-footer {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+        height: auto;
+    }
+
+    .login-card {
+        padding: 15px;
     }
 
     h1 {
         font-size: 1.5rem;
     }
 
-    .btn {
+    .input-group label {
         font-size: 0.9rem;
     }
+
+    .input-group input {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+
+    .login-footer {
+        font-size: 0.7rem;
+    }
+
+    .footer {
+        font-size: 0.8rem;
+    }
+}
+
+/* Garantir que inputs e botões não excedam o espaço disponível */
+.input-group input,
+.btn {
+    max-width: 100%;
 }
