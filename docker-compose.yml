@@ -22,8 +22,6 @@ services:
       DB_HOST: "my-cine-checker-postgres"
       DB_USERNAME: "postgres"
       DB_PASSWORD: "root"
-    ports:
-      - "8080:8080"
     networks:
       - my-cine-checker-network
     depends_on:
